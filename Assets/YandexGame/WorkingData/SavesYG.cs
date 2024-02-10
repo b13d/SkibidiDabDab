@@ -18,7 +18,10 @@ namespace YG
 
         // Ваши сохранения
 
-        // ...
+        public int energy = 0;
+        public int energyInClick = 5;
+        public int energyInSecond = 1;
+        public int damage = 1;
 
         // Поля (сохранения) можно удалять и создавать новые. При обновлении игры сохранения ломаться не должны
 
