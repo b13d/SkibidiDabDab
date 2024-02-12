@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using YG;
@@ -12,6 +13,9 @@ public class TargetClick : MonoBehaviour
 
     [SerializeField]
     private Slider _health = null;
+
+    [SerializeField]
+    private TextMeshProUGUI _txtHealth = null;
 
     void Start()
     {
@@ -29,15 +33,15 @@ public class TargetClick : MonoBehaviour
     {
         if (_wasClick)
         {
-            _image.transform.localScale += Vector3.one / 3f;
+            _image.transform.localScale -= Vector3.one / 5f;
         }
 
-        if (!_wasClick && _image.transform.localScale.x > 1)
+        if (!_wasClick && _image.transform.localScale.x < 1)
         {
-            _image.transform.localScale -= Vector3.one / 3f;
+            _image.transform.localScale += Vector3.one / 5f;
         }
 
-        if (_image.transform.localScale.x > 2)
+        if (_image.transform.localScale.x < 0.5f)
         {
             _wasClick = false;
         }
@@ -50,6 +54,8 @@ public class TargetClick : MonoBehaviour
         _wasClick = true;
         _savesYG.energy += _savesYG.energyInClick;
         GameManager.instance.UpdateUI();
+
+        _txtHealth.text = _health.value.ToString();
     }
 
 }

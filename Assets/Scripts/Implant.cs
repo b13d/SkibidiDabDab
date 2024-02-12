@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using YG;
 
 public class Implant : MonoBehaviour
@@ -26,16 +27,33 @@ public class Implant : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _txtPriceImplant = null;
 
+    [SerializeField]
+    private bool _onlyOne = false;
+
 
 
     void Start()
     {
         _savesYG = YandexGame.savesData;
+        
+        if (price > 1000000)
+        {
+            _txtPriceImplant.text = (float)price / 1000000 + "ì" + " <sprite=\"Money\" name=\"Money\">";
+        }
+        else
+        {
+            _txtPriceImplant.text = price.ToString() + " <sprite=\"Money\" name=\"Money\">";
+        }
     }
 
 
     public void Buy()
     {
+        if (_onlyOne)
+        {
+            GetComponent<Button>().interactable = false;
+        }
+
         if (_savesYG.energy < price)
         {
             return;
@@ -56,11 +74,14 @@ public class Implant : MonoBehaviour
             _savesYG.energyInClick += bonusAdd;
         }
 
-        price += price / percentAdd;
+        price += Mathf.FloorToInt((float)price / 100 * percentAdd);
+
+        Debug.Log(price / 100 * percentAdd);
+        Debug.Log("price: " + price);
 
         percentAdd += 5;
 
-        _txtPriceImplant.text = price.ToString();
+        _txtPriceImplant.text = price.ToString() + " <sprite=\"Money\" name=\"Money\">";
         GameManager.instance.UpdateUI();
     }
 }
