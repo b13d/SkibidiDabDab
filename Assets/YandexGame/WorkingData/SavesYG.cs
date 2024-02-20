@@ -1,4 +1,7 @@
 ﻿
+using System.Collections;
+using System.Collections.Generic;
+
 namespace YG
 {
     [System.Serializable]
@@ -19,9 +22,19 @@ namespace YG
         // Ваши сохранения
 
         public int energy = 0;
-        public int energyInClick = 5;
+        public int energyInClick = 1;
         public int energyInSecond = 1;
         public int damage = 1;
+        public bool firstTry = true;
+
+        public Dictionary<string, int> achievements = new Dictionary<string, int>()
+        {
+            {  "Click", 0},
+            { "Buy", 0},
+            {  "PlayTime", 0},
+            {  "HaveMoney", 0},
+            {"ThingBuy ", 0}
+        };
 
         // Поля (сохранения) можно удалять и создавать новые. При обновлении игры сохранения ломаться не должны
 

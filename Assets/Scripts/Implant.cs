@@ -16,13 +16,13 @@ public class Implant : MonoBehaviour
     private bool isSpeedAdd = false;
 
     [SerializeField]
-    private bool isDamageAdd = false;
+    private bool isDoubling = false;
 
     [SerializeField]
     private int bonusAdd = 0;
 
     [SerializeField]
-    private int percentAdd = 1;
+    private int percentAdd = 20;
 
     [SerializeField]
     private TextMeshProUGUI _txtPriceImplant = null;
@@ -35,8 +35,8 @@ public class Implant : MonoBehaviour
     void Start()
     {
         _savesYG = YandexGame.savesData;
-        
-        if (price > 1000000)
+
+        if (price >= 1000000)
         {
             _txtPriceImplant.text = (float)price / 1000000 + "ì" + " <sprite=\"Money\" name=\"Money\">";
         }
@@ -49,37 +49,42 @@ public class Implant : MonoBehaviour
 
     public void Buy()
     {
-        if (_onlyOne)
-        {
-            GetComponent<Button>().interactable = false;
-        }
-
         if (_savesYG.energy < price)
         {
             return;
         }
 
+        if (_onlyOne)
+        {
+            GetComponent<Button>().interactable = false;
+        }
+
         _savesYG.energy -= price;
 
-        if (isSpeedAdd)
+        if (isDoubling)
         {
-            _savesYG.energyInSecond += bonusAdd;
-        }
-        else if (isDamageAdd)
-        {
-            _savesYG.damage += bonusAdd;
+            _savesYG.energyInSecond *= 2;
+            _savesYG.energyInClick *= 2;
+
+            price *= 4;
         }
         else
         {
-            _savesYG.energyInClick += bonusAdd;
+            if (isSpeedAdd)
+            {
+                _savesYG.energyInSecond += bonusAdd;
+            }
+            else
+            {
+                _savesYG.energyInClick += bonusAdd;
+            }
+
+            price += Mathf.FloorToInt((float)price / 100 * percentAdd);
+
+            percentAdd += 20;
         }
 
-        price += Mathf.FloorToInt((float)price / 100 * percentAdd);
-
-        Debug.Log(price / 100 * percentAdd);
-        Debug.Log("price: " + price);
-
-        percentAdd += 5;
+       
 
         _txtPriceImplant.text = price.ToString() + " <sprite=\"Money\" name=\"Money\">";
         GameManager.instance.UpdateUI();

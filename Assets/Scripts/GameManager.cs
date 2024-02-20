@@ -20,8 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _txtInClick;
 
-    [SerializeField]
-    private TextMeshProUGUI _txtDamage;
+    private bool _doubleBonus;
 
 
     private void Start()
@@ -35,14 +34,18 @@ public class GameManager : MonoBehaviour
             _txtScore.text = savesYG.energy + " <sprite=\"Money\" name=\"Money\">";
             _txtInSecond.text = savesYG.energyInSecond + "  <sprite=\"Money\" name=\"Money\">В секунду";
             _txtInClick.text = savesYG.energyInClick + "  <sprite=\"Money\" name=\"Money\"> за клик";
-            _txtDamage.text = savesYG.damage + "  <sprite=\"Damage\" name=\"Damage\"> за клик";
-
 
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
 
         savesYG = YandexGame.savesData;
+    }
+
+    public bool DoubleBonus
+    {
+        set { _doubleBonus = value; }
+        get { return _doubleBonus; }
     }
 
     void Update()
@@ -52,7 +55,15 @@ public class GameManager : MonoBehaviour
         if (_time < 0)
         {
             _time = 1f;
-            savesYG.energy += savesYG.energyInSecond;
+
+            if (_doubleBonus)
+            {
+                savesYG.energy += savesYG.energyInSecond * 2;
+            }
+            else
+            {
+                savesYG.energy += savesYG.energyInSecond;
+            }
 
             UpdateUI();
         }
@@ -60,9 +71,19 @@ public class GameManager : MonoBehaviour
 
     public void UpdateUI()
     {
-        _txtScore.text = savesYG.energy + " <sprite=\"Money\" name=\"Money\">";
-        _txtInSecond.text = savesYG.energyInSecond + " <sprite=\"Money\" name=\"Money\">В секунду";
-        _txtInClick.text = savesYG.energyInClick + " <sprite=\"Money\" name=\"Money\"> за клик";
-        _txtDamage.text = savesYG.damage + "  <sprite=\"Damage\" name=\"Damage\"> за клик";
+        if (_doubleBonus)
+        {
+            _txtScore.text = savesYG.energy + " <sprite=\"Money\" name=\"Money\">";
+            _txtInSecond.text = savesYG.energyInSecond * 2 + " <sprite=\"Money\" name=\"Money\">В секунду x2";
+            _txtInClick.text = savesYG.energyInClick * 2 + " <sprite=\"Money\" name=\"Money\"> за клик x2";
+        }
+        else
+        {
+            _txtScore.text = savesYG.energy + " <sprite=\"Money\" name=\"Money\">";
+            _txtInSecond.text = savesYG.energyInSecond + " <sprite=\"Money\" name=\"Money\">В секунду";
+            _txtInClick.text = savesYG.energyInClick + " <sprite=\"Money\" name=\"Money\"> за клик";
+        }
+
+
     }
 }
