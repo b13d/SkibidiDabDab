@@ -30,6 +30,8 @@ public class Implant : MonoBehaviour
     [SerializeField]
     private bool _onlyOne = false;
 
+    [SerializeField]
+    private int _indexThing = 0;
 
 
     void Start()
@@ -43,6 +45,18 @@ public class Implant : MonoBehaviour
         else
         {
             _txtPriceImplant.text = price.ToString() + " <sprite=\"Money\" name=\"Money\">";
+
+            var priceInSave = YandexGame.savesData.priceThings[_indexThing];
+            var newPercentAdd = YandexGame.savesData.percentAddThings[_indexThing];
+            
+            Debug.Log("priceInSave: " + priceInSave);
+            
+            if (priceInSave != 0)
+            {
+                percentAdd = newPercentAdd;
+                price = priceInSave;
+                _txtPriceImplant.text = priceInSave + " <sprite=\"Money\" name=\"Money\">";
+            }
         }
     }
 
@@ -52,6 +66,18 @@ public class Implant : MonoBehaviour
         if (_savesYG.energy < price)
         {
             return;
+        }
+        
+
+        YandexGame.savesData.achievements.buy += 1;
+        YandexGame.savesData.achievements.spend += price;
+        
+        if (YandexGame.savesData.firstBuyThing[_indexThing] != 1)
+        {
+            YandexGame.savesData.achievements.thingBuy += 1;
+            YandexGame.savesData.firstBuyThing[_indexThing] = 1;
+        
+            YandexGame.SaveProgress();
         }
 
         if (_onlyOne)
@@ -84,9 +110,14 @@ public class Implant : MonoBehaviour
             percentAdd += 20;
         }
 
-       
 
+        YandexGame.savesData.priceThings[_indexThing] = price; 
+        YandexGame.savesData.percentAddThings[_indexThing] = percentAdd; 
+        
+        YandexGame.SaveProgress();
+        
         _txtPriceImplant.text = price.ToString() + " <sprite=\"Money\" name=\"Money\">";
         GameManager.instance.UpdateUI();
+        
     }
 }

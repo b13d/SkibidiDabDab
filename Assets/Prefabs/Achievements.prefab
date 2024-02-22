@@ -62,7 +62,7 @@ MonoBehaviour:
   - "\u041D\u0430\u0431\u0440\u0430\u0442\u044C 1000000 \u0434\u0435\u043D\u0435\u0433"
   - "\u041A\u0443\u043F\u0438\u0442\u044C \u0432\u0441\u0435 \u0432\u0435\u0449\u0438
     \u0432 \u043B\u0430\u0432\u043A\u0435"
-  _targetAchievements: 0a0000000a000000e80300000500000050c30000f4010000f4010000a086010040420f0009000000
+  _targetAchievements: 0a0000000a000000e80300000500000050c30000f4010000f4010000a086010040420f000f000000
   _spriteAchievements:
   - {fileID: 21300000, guid: 22d592d5ffa2aac48a9f7d7a4ba5ae0e, type: 3}
   - {fileID: 21300000, guid: 56a9b8fc28e743343b6f3491770bc694, type: 3}
@@ -70,12 +70,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d6e9a516176d2ef489ee99a49160d62b, type: 3}
   - {fileID: -1629953170, guid: fd0296b5217812b4e996a562626b48fa, type: 3}
   - {fileID: 21300000, guid: 00e1490099b219d49afcd09f29405d12, type: 3}
+  - {fileID: 21300000, guid: afc4b92127f558d4b94e3372166dfeda, type: 3}
   - {fileID: -1312704901, guid: fd0296b5217812b4e996a562626b48fa, type: 3}
-  - {fileID: 1188346349, guid: fd0296b5217812b4e996a562626b48fa, type: 3}
   - {fileID: 21300000, guid: 8813a68b913e09143b187a72984ec44c, type: 3}
   - {fileID: -7153916632972548913, guid: 4a2bdb1a09cc7eb4583f6818a37b96a8, type: 3}
   _achievementPrefab: {fileID: 2345138620606604886, guid: dad500f771c4916469b1a551360e12d0, type: 3}
   _placeAchievements: {fileID: 6384991231409031827}
+  _achievements: []
 --- !u!1 &2577094967181194118
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,7 +232,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.5, y: 0.00080158876}
-  m_SizeDelta: {x: -0.49994, y: 2058.86}
+  m_SizeDelta: {x: -0.49994, y: 2906.91}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &237516939211541645
 MonoBehaviour:
@@ -269,6 +270,7 @@ GameObject:
   - component: {fileID: 3118331174419821259}
   - component: {fileID: 5790531046666543742}
   - component: {fileID: 3349206994832965290}
+  - component: {fileID: 7348567894047536536}
   m_Layer: 5
   m_Name: Scroll View
   m_TagString: Achievement
@@ -364,6 +366,51 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!61 &7348567894047536536
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6392704628301165880}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -2.1803284, y: -4.6608276}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 498.1247, y: 965.3248}
+  m_EdgeRadius: 0
 --- !u!1 &7377823374939977765
 GameObject:
   m_ObjectHideFlags: 0

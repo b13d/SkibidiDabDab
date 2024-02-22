@@ -5,6 +5,19 @@ using System.Collections.Generic;
 namespace YG
 {
     [System.Serializable]
+
+    public class Achievements
+    {
+        public int click = 0;
+        public int playTime = 0;
+        public int buy = 0;
+        public int haveMoney = 0;
+        public int thingBuy = 0;
+        public int spend = 0;
+
+        public int[] achievementsCompleted = new int[10];
+    }
+
     public class SavesYG
     {
         // "Технические сохранения" для работы плагина (Не удалять)
@@ -27,14 +40,11 @@ namespace YG
         public int damage = 1;
         public bool firstTry = true;
 
-        public Dictionary<string, int> achievements = new Dictionary<string, int>()
-        {
-            {  "Click", 0},
-            { "Buy", 0},
-            {  "PlayTime", 0},
-            {  "HaveMoney", 0},
-            {"ThingBuy ", 0}
-        };
+        public Achievements achievements = new Achievements();
+        
+        public int[] priceThings = new int[15];
+        public int[] percentAddThings = new int[15];
+        public int[] firstBuyThing = new int[15];
 
         // Поля (сохранения) можно удалять и создавать новые. При обновлении игры сохранения ломаться не должны
 

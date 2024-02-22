@@ -21,11 +21,26 @@ public class Achievement : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _txtTargetProgress = null;
 
+    [SerializeField] private RawImage _backGroundImage = null;
+    
+    [SerializeField] private bool finalized = false;
 
+    public bool Finalized
+    {
+        get { return finalized; }
+        set { finalized = value; }
+    }
+    
     public TextMeshProUGUI TextNameAchievement
     {
         get { return _txtNameAchievement; }
         set { _txtNameAchievement = value; }
+    }
+    
+    public RawImage BackGround
+    {
+        get { return _backGroundImage; }
+        set { _backGroundImage = value; }
     }
 
     public Image ImageAchievement

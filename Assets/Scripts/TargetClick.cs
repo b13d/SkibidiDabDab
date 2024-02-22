@@ -32,7 +32,7 @@ public class TargetClick : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(YandexGame.savesData.achievements["Buy"]);
+
 
         _image = transform.GetChild(0).GetComponent<Image>();
         _savesYG = YandexGame.savesData;
@@ -65,11 +65,9 @@ public class TargetClick : MonoBehaviour
 
     void Dekstop()
     {
-        
-
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.up);
 
-        Debug.Log(hit.collider.tag);
+        //Debug.Log(hit.collider.tag);
 
         if (hit.collider != null)
         {
@@ -120,7 +118,9 @@ public class TargetClick : MonoBehaviour
         {
             _txtDoubleBonus.SetActive(false);
 
-            GameManager.instance.DoubleBonus = false;
+            Debug.Log(GameManager.instance);
+            
+            // GameManager.instance.DoubleBonus = false;
         }
     }
 
@@ -145,6 +145,8 @@ public class TargetClick : MonoBehaviour
 
     public void Click(int idTouch)
     {
+        YandexGame.savesData.achievements.click += 1;
+        
         if (_firstPlay.activeSelf == true)
         {
             _firstPlay.SetActive(false);
@@ -171,6 +173,8 @@ public class TargetClick : MonoBehaviour
             _savesYG.energy += _savesYG.energyInClick;
         }
 
+
+        Debug.Log(_savesYG.energy);
         
         GameManager.instance.UpdateUI();
 

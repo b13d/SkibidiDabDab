@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NotificationsMain : MonoBehaviour
 {
@@ -14,12 +16,16 @@ public class NotificationsMain : MonoBehaviour
 
 
 
-    public void CreateNewNotification()
+    public void CreateNewNotification(Image image, string txtHeader, string progress)
     {
         var newNotification = Instantiate(_newNotification, transform.position, Quaternion.identity, transform);
 
-        newNotification.GetComponent<Notification>().TextProgress.text = _currentNumber.ToString() + " / " + "10";
+        newNotification.GetComponent<Notification>().TextProgress.text = progress;
 
+        newNotification.GetComponent<Notification>().ImageNotification.sprite = image.sprite;
+        
+        newNotification.GetComponent<Notification>().TextNameNotification.text  = txtHeader;
+        
         _notificationsTransform.Add(newNotification.transform);
 
         _currentNumber++;

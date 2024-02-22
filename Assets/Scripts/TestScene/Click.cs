@@ -16,6 +16,6 @@ public class Click : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.up);
 
-        Debug.Log(hit.collider.name);
+        //Debug.Log(hit.collider.name);
     }
 }

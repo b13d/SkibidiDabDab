@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,7 +10,6 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
 
     public float _time = 1f;
-    public SavesYG savesYG;
 
     [SerializeField]
     private TextMeshProUGUI _txtScore;
@@ -25,21 +25,23 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log(YandexGame.savesData.priceThings);
+        
         if (instance != null)
         {
             Destroy(gameObject);
         }
         else
         {
-            _txtScore.text = savesYG.energy + " <sprite=\"Money\" name=\"Money\">";
-            _txtInSecond.text = savesYG.energyInSecond + "  <sprite=\"Money\" name=\"Money\">В секунду";
-            _txtInClick.text = savesYG.energyInClick + "  <sprite=\"Money\" name=\"Money\"> за клик";
+            // YandexGame.ResetSaveProgress();
+
+            _txtScore.text = YandexGame.savesData.energy + " <sprite=\"Money\" name=\"Money\">";
+            _txtInSecond.text = YandexGame.savesData.energyInSecond + "  <sprite=\"Money\" name=\"Money\">В секунду";
+            _txtInClick.text = YandexGame.savesData.energyInClick + "  <sprite=\"Money\" name=\"Money\"> за клик";
 
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-
-        savesYG = YandexGame.savesData;
     }
 
     public bool DoubleBonus
@@ -58,12 +60,13 @@ public class GameManager : MonoBehaviour
 
             if (_doubleBonus)
             {
-                savesYG.energy += savesYG.energyInSecond * 2;
+                YandexGame.savesData.energy += YandexGame.savesData.energyInSecond * 2;
             }
             else
             {
-                savesYG.energy += savesYG.energyInSecond;
+                YandexGame.savesData.energy += YandexGame.savesData.energyInSecond;
             }
+
 
             UpdateUI();
         }
@@ -73,15 +76,15 @@ public class GameManager : MonoBehaviour
     {
         if (_doubleBonus)
         {
-            _txtScore.text = savesYG.energy + " <sprite=\"Money\" name=\"Money\">";
-            _txtInSecond.text = savesYG.energyInSecond * 2 + " <sprite=\"Money\" name=\"Money\">В секунду x2";
-            _txtInClick.text = savesYG.energyInClick * 2 + " <sprite=\"Money\" name=\"Money\"> за клик x2";
+            _txtScore.text = YandexGame.savesData.energy + " <sprite=\"Money\" name=\"Money\">";
+            _txtInSecond.text = YandexGame.savesData.energyInSecond * 2 + " <sprite=\"Money\" name=\"Money\">В секунду x2";
+            _txtInClick.text = YandexGame.savesData.energyInClick * 2 + " <sprite=\"Money\" name=\"Money\"> за клик x2";
         }
         else
         {
-            _txtScore.text = savesYG.energy + " <sprite=\"Money\" name=\"Money\">";
-            _txtInSecond.text = savesYG.energyInSecond + " <sprite=\"Money\" name=\"Money\">В секунду";
-            _txtInClick.text = savesYG.energyInClick + " <sprite=\"Money\" name=\"Money\"> за клик";
+            _txtScore.text = YandexGame.savesData.energy + " <sprite=\"Money\" name=\"Money\">";
+            _txtInSecond.text = YandexGame.savesData.energyInSecond + " <sprite=\"Money\" name=\"Money\">В секунду";
+            _txtInClick.text = YandexGame.savesData.energyInClick + " <sprite=\"Money\" name=\"Money\"> за клик";
         }
 
 

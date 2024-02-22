@@ -11,6 +11,8 @@ namespace YG
     public partial class YandexGame
     {
         public static SavesYG savesData = new SavesYG();
+        
+        
         enum DataState { Exist, NotExist, Broken };
 
 

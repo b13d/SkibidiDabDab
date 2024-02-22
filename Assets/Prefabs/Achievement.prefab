@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.4056604, g: 0.21540342, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -378,6 +378,8 @@ MonoBehaviour:
   _sliderProgress: {fileID: 5350036539758518029}
   _txtCurrentProgress: {fileID: 5340505848355224880}
   _txtTargetProgress: {fileID: 9017952312909483522}
+  _backGroundImage: {fileID: 8497555714622625838}
+  finalized: 0
 --- !u!61 &2143230828669057428
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -651,7 +653,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.79205453, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
