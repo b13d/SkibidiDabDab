@@ -7,10 +7,10 @@ using UnityEngine.UI;
 public class Notification : MonoBehaviour
 {
     private bool _isMove = false;
-
-    [SerializeField]
-    private TextMeshProUGUI _txtProgress = null;
-
+    //
+    // [SerializeField]
+    // private TextMeshProUGUI _txtProgress = null;
+    //
 
     [SerializeField]
     private TextMeshProUGUI _txtNameNotification = null;
@@ -20,11 +20,11 @@ public class Notification : MonoBehaviour
     private Image _imageNotification = null;
 
 
-    public TextMeshProUGUI TextProgress
-    {
-        get { return _txtProgress; }
-        set { _txtProgress = value; }
-    }
+    // public TextMeshProUGUI TextProgress
+    // {
+    //     get { return _txtProgress; }
+    //     set { _txtProgress = value; }
+    // }
 
     public TextMeshProUGUI TextNameNotification
     {
@@ -49,5 +49,10 @@ public class Notification : MonoBehaviour
         {
             transform.localPosition += Vector3.up;
         }
+    }
+
+    public void PlayIdle()
+    {
+        GetComponent<Animator>().SetTrigger("Idle");
     }
 }

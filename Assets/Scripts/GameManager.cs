@@ -66,10 +66,9 @@ public class GameManager : MonoBehaviour
             {
                 YandexGame.savesData.energy += YandexGame.savesData.energyInSecond;
             }
-
-
-            UpdateUI();
         }
+        
+        UpdateUI();
     }
 
     public void UpdateUI()

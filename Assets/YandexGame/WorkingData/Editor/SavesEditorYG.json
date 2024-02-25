@@ -1,5 +1,5 @@
 {
-    "idSave": 1801,
+    "idSave": 27,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
@@ -10,22 +10,22 @@
         true,
         false
     ],
-    "energy": 57987,
-    "energyInClick": 2064,
-    "energyInSecond": 2048,
+    "energy": 0,
+    "energyInClick": 1,
+    "energyInSecond": 1,
     "damage": 1,
     "firstTry": true,
     "achievements": {
-        "click": 30,
+        "click": 0,
         "playTime": 0,
-        "buy": 19,
+        "buy": 0,
         "haveMoney": 0,
-        "thingBuy": 1,
-        "spend": 4655,
+        "thingBuy": 0,
+        "spend": 0,
         "achievementsCompleted": [
-            1,
-            1,
-            1,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -36,7 +36,7 @@
         ]
     },
     "priceThings": [
-        6614,
+        0,
         0,
         0,
         0,
@@ -53,7 +53,7 @@
         0
     ],
     "percentAddThings": [
-        180,
+        0,
         0,
         0,
         0,
@@ -70,7 +70,7 @@
         0
     ],
     "firstBuyThing": [
-        1,
+        0,
         0,
         0,
         0,

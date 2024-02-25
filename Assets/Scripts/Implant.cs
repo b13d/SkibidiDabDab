@@ -33,6 +33,8 @@ public class Implant : MonoBehaviour
     [SerializeField]
     private int _indexThing = 0;
 
+    [SerializeField] private bool _clickAndInSecond = false;
+
 
     void Start()
     {
@@ -99,6 +101,11 @@ public class Implant : MonoBehaviour
             if (isSpeedAdd)
             {
                 _savesYG.energyInSecond += bonusAdd;
+            }
+            else if (_clickAndInSecond)
+            {
+                _savesYG.energyInSecond += bonusAdd;
+                _savesYG.energyInClick += bonusAdd;
             }
             else
             {

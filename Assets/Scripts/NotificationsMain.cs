@@ -20,7 +20,7 @@ public class NotificationsMain : MonoBehaviour
     {
         var newNotification = Instantiate(_newNotification, transform.position, Quaternion.identity, transform);
 
-        newNotification.GetComponent<Notification>().TextProgress.text = progress;
+        // newNotification.GetComponent<Notification>().TextProgress.text = progress;
 
         newNotification.GetComponent<Notification>().ImageNotification.sprite = image.sprite;
         

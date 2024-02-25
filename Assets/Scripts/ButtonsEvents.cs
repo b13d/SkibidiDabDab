@@ -95,6 +95,7 @@ public class ButtonsEvents : MonoBehaviour
 
         if (_isAchievementsMoving)
         {
+            
             if (_isOpenAchievements)
             {
                 Vector3 targetPos = new Vector3(_xAchievementsOpen, _achievements.transform.localPosition.y, _achievements.transform.localPosition.z);
@@ -108,5 +109,6 @@ public class ButtonsEvents : MonoBehaviour
                 _achievements.transform.localPosition = Vector3.Lerp(_achievements.transform.localPosition, targetPos, .1f);
             }
         }
+  
     }
 }

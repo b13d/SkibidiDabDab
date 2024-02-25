@@ -61,6 +61,19 @@ public class TargetClick : MonoBehaviour
                 MobileClick(i);
             }
         }
+        
+        if (_energy.value > 80)
+        {
+            _txtDoubleBonus.SetActive(true);
+
+            GameManager.instance.DoubleBonus = true;
+        }
+        else
+        {
+            _txtDoubleBonus.SetActive(false);
+
+            GameManager.instance.DoubleBonus = false;
+        }
     }
 
     void Dekstop()
@@ -108,20 +121,7 @@ public class TargetClick : MonoBehaviour
             }
         }
 
-        if (_energy.value > 80)
-        {
-            _txtDoubleBonus.SetActive(true);
 
-            GameManager.instance.DoubleBonus = true;
-        }
-        else
-        {
-            _txtDoubleBonus.SetActive(false);
-
-            Debug.Log(GameManager.instance);
-            
-            // GameManager.instance.DoubleBonus = false;
-        }
     }
 
 

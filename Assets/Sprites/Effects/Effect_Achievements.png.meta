@@ -1,0 +1,399 @@
+fileFormatVersion: 2
+guid: 5cb99d0ae7fbeaf42b978c68f5a182b3
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Effect_Achievements_Select_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 56
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdc2f5976f1d9c34aa0003e4f8c6b547
+      internalID: -675550249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Achievements_Select_1
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 384
+        width: 56
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9a6e3ff44feb014e804ebe39455a502
+      internalID: 491289485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Achievements_Select_2
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 384
+        width: 56
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d38f4c40d96fcc468cccd6f3c9bb9c3
+      internalID: 122736473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Achievements_Select_3
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 384
+        width: 56
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76c2d298089b78544913164a25e16e77
+      internalID: -901931459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Achievements_Select_4
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 384
+        width: 56
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7651216b6c805eb4980901c77a1b68b4
+      internalID: -2141077321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Achievements_Select_5
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 384
+        width: 56
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93ddd4c6c557be449b052ea4a65ffe43
+      internalID: -1660316602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Achievements_Select_6
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 384
+        width: 56
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d13494d503fd61c47b30a759afca492e
+      internalID: 1888092128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_Achievements_Select_7
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 384
+        width: 56
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13861c5b8edaf1c4e907f53ec171d63c
+      internalID: 79741535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Effect_Achievements_0: 1755286917
+      Effect_Achievements_1: 1132853919
+      Effect_Achievements_10: -230296837
+      Effect_Achievements_11: -1966798478
+      Effect_Achievements_12: -366726385
+      Effect_Achievements_13: 1723638109
+      Effect_Achievements_2: 1767893680
+      Effect_Achievements_22: -1526976034
+      Effect_Achievements_23: 951120961
+      Effect_Achievements_24: 1846933588
+      Effect_Achievements_25: 117973353
+      Effect_Achievements_26: -270630
+      Effect_Achievements_27: 149839596
+      Effect_Achievements_28: -1636948992
+      Effect_Achievements_29: 146688266
+      Effect_Achievements_3: -793915301
+      Effect_Achievements_30: 1096377710
+      Effect_Achievements_31: -5950660
+      Effect_Achievements_32: 577802361
+      Effect_Achievements_33: 1530083778
+      Effect_Achievements_34: -1663263749
+      Effect_Achievements_35: -1450127919
+      Effect_Achievements_36: -76210518
+      Effect_Achievements_37: -30932811
+      Effect_Achievements_38: 772390367
+      Effect_Achievements_39: -326636510
+      Effect_Achievements_4: -1928018850
+      Effect_Achievements_40: -249125283
+      Effect_Achievements_41: -1165023244
+      Effect_Achievements_42: -41695745
+      Effect_Achievements_43: 454993469
+      Effect_Achievements_44: 1864804105
+      Effect_Achievements_45: 1965236734
+      Effect_Achievements_46: 514958744
+      Effect_Achievements_47: 637398240
+      Effect_Achievements_48: 679303491
+      Effect_Achievements_49: 755524704
+      Effect_Achievements_5: -897453068
+      Effect_Achievements_50: 1908588132
+      Effect_Achievements_51: -1270407054
+      Effect_Achievements_52: -753127917
+      Effect_Achievements_53: -2038180381
+      Effect_Achievements_54: -242702956
+      Effect_Achievements_55: 141077694
+      Effect_Achievements_56: -998240837
+      Effect_Achievements_57: -1188607546
+      Effect_Achievements_58: -665927956
+      Effect_Achievements_59: -1201414698
+      Effect_Achievements_6: -594322121
+      Effect_Achievements_60: -1472442780
+      Effect_Achievements_61: -119696043
+      Effect_Achievements_62: -1191144986
+      Effect_Achievements_63: -1547850427
+      Effect_Achievements_64: -1325435985
+      Effect_Achievements_65: -196540522
+      Effect_Achievements_66: 1431826663
+      Effect_Achievements_67: -1084038082
+      Effect_Achievements_68: 1906787632
+      Effect_Achievements_69: -985395603
+      Effect_Achievements_7: 575777188
+      Effect_Achievements_70: 876936786
+      Effect_Achievements_71: 1253873377
+      Effect_Achievements_72: -1941872650
+      Effect_Achievements_73: -847632729
+      Effect_Achievements_74: -1156551644
+      Effect_Achievements_75: -820425138
+      Effect_Achievements_76: -2020037448
+      Effect_Achievements_77: -1117264273
+      Effect_Achievements_8: 996806078
+      Effect_Achievements_9: -1193858157
+      Effect_Achievements_Select_0: -675550249
+      Effect_Achievements_Select_1: 491289485
+      Effect_Achievements_Select_2: 122736473
+      Effect_Achievements_Select_3: -901931459
+      Effect_Achievements_Select_4: -2141077321
+      Effect_Achievements_Select_5: -1660316602
+      Effect_Achievements_Select_6: 1888092128
+      Effect_Achievements_Select_7: 79741535
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -26,6 +26,11 @@ namespace YG.Example
 
         void AdMoney(int count)
         {
+            YandexGame.savesData.energyInClick *= 2;
+            YandexGame.savesData.energyInSecond *= 2;
+            
+            YandexGame.SaveProgress();
+            
             moneyCount += count;
             textMoney.text = "" + moneyCount;
         }

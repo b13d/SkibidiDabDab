@@ -49,7 +49,7 @@ public class Achievements : MonoBehaviour
                 newAchievement.GetComponent<Achievement>().Finalized = true;
 
                 var newBackGround = newAchievement.GetComponent<Achievement>().BackGround;
-                newBackGround.color = Color.red;
+                newBackGround.color = Color.grey;
                 newAchievement.GetComponent<Achievement>().BackGround = newBackGround;
             }
 
@@ -152,7 +152,7 @@ public class Achievements : MonoBehaviour
                     _achievements[index].SliderProgress.value = int.Parse(_achievements[index].TargetProgress.text);
 
                     var newBackGround = _achievements[index].BackGround;
-                    newBackGround.color = Color.red;
+                    newBackGround.color = Color.grey;
                     _achievements[index].BackGround = newBackGround;
 
                     YandexGame.savesData.achievements.achievementsCompleted[index] = 1;
