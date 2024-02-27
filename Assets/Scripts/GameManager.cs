@@ -9,8 +9,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
 
-    public float _time = 1f;
-
+    private float _time = 1f;
+    
     [SerializeField]
     private TextMeshProUGUI _txtScore;
 
@@ -25,16 +25,22 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(YandexGame.savesData.priceThings);
-        
         if (instance != null)
         {
             Destroy(gameObject);
         }
         else
         {
-            // YandexGame.ResetSaveProgress();
-
+            YandexGame.ResetSaveProgress();
+            YandexGame.SaveProgress();
+            
+            if (YandexGame.savesData.energyInSecond == 0 || YandexGame.savesData.energyInClick == 0)
+            {
+                YandexGame.savesData.energyInSecond = 1;
+                YandexGame.savesData.energyInClick = 1;
+            }
+            
+            
             _txtScore.text = YandexGame.savesData.energy + " <sprite=\"Money\" name=\"Money\">";
             _txtInSecond.text = YandexGame.savesData.energyInSecond + "  <sprite=\"Money\" name=\"Money\">В секунду";
             _txtInClick.text = YandexGame.savesData.energyInClick + "  <sprite=\"Money\" name=\"Money\"> за клик";
@@ -56,6 +62,7 @@ public class GameManager : MonoBehaviour
 
         if (_time < 0)
         {
+            
             _time = 1f;
 
             if (_doubleBonus)
@@ -64,11 +71,22 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                Debug.Log("YandexGame.savesData.test: " + YandexGame.savesData.test);
+
+                
                 YandexGame.savesData.energy += YandexGame.savesData.energyInSecond;
             }
+
+            if (YandexGame.savesData.maxRecord < YandexGame.savesData.energy)
+            {
+                YandexGame.NewLeaderboardScores("BigRecord", YandexGame.savesData.energy);
+
+                YandexGame.savesData.maxRecord = YandexGame.savesData.energy;
+            }
+
+            UpdateUI();
+            YandexGame.SaveProgress();
         }
-        
-        UpdateUI();
     }
 
     public void UpdateUI()

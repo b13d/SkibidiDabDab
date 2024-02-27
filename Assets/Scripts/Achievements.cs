@@ -21,11 +21,17 @@ public class Achievements : MonoBehaviour
 
     [SerializeField] private NotificationsMain _notification = null;
 
+    private AudioSource _audio;
+
     float _timeToAchievement = 60f;
+
+    private float _second = 1f;
 
 
     void Start()
     {
+        _audio = GetComponent<AudioSource>();
+        
         CreateAchievements();
     }
 
@@ -40,6 +46,7 @@ public class Achievements : MonoBehaviour
             newAchievement.GetComponent<Achievement>().ImageAchievement.sprite = _spriteAchievements[i];
             newAchievement.GetComponent<Achievement>().TargetProgress.text = _targetAchievements[i].ToString();
             newAchievement.GetComponent<Achievement>().SliderProgress.maxValue = _targetAchievements[i];
+            newAchievement.GetComponent<Achievement>().CurrentProgress.text = "0";
 
             if (YandexGame.savesData.achievements.achievementsCompleted[i] == 1)
             {
@@ -60,25 +67,36 @@ public class Achievements : MonoBehaviour
 
     private void Update()
     {
+        // if (_second < 0)
+        // {
+        //     _second = 1f;
+        //
+        // }
+        
+        CheckAchievements();
+
+        
         if (YandexGame.savesData.achievements.playTime < int.Parse(_achievements[3].TargetProgress.text))
         {
             _timeToAchievement -= Time.deltaTime;
-
+        
             if (_timeToAchievement <= 0)
             {
                 _timeToAchievement = 60f;
-
+        
                 _achievements[3].SliderProgress.value += 1;
                 _achievements[3].CurrentProgress.text += 1;
-
+        
                 YandexGame.savesData.achievements.playTime += 1;
-
-                YandexGame.SaveProgress();
+        
                 // подсчет времени наигранного для достижения   
             }
         }
+    }
 
 
+    void CheckAchievements()
+    {
         for (int i = 0; i < _achievements.Count; i++)
         {
             if (i == 0 || i == 5 && !_achievements[i].Finalized)
@@ -134,39 +152,37 @@ public class Achievements : MonoBehaviour
                     _achievements[i].CurrentProgress.text = YandexGame.savesData.achievements.thingBuy.ToString();
                 }
             }
-
-            if (i == _achievements.Count - 1)
-            {
-                YandexGame.SaveProgress();
-            }
-        }
-
-        bool CheckValueTarget(int value, int index)
-        {
-            if (int.Parse(_achievements[index].TargetProgress.text) <= value)
-            {
-                if (!_achievements[index].Finalized)
-                {
-                    _achievements[index].Finalized = true;
-                    _achievements[index].CurrentProgress.text = _achievements[index].TargetProgress.text;
-                    _achievements[index].SliderProgress.value = int.Parse(_achievements[index].TargetProgress.text);
-
-                    var newBackGround = _achievements[index].BackGround;
-                    newBackGround.color = Color.grey;
-                    _achievements[index].BackGround = newBackGround;
-
-                    YandexGame.savesData.achievements.achievementsCompleted[index] = 1;
-
-                    _notification.CreateNewNotification(_achievements[index].ImageAchievement,
-                        _achievements[index].TextNameAchievement.text, _achievements[index].CurrentProgress.text);
-                }
-
-                return false;
-            }
-            else
-            {
-                return true;
-            }
         }
     }
+    
+    bool CheckValueTarget(int value, int index)
+    {
+        if (int.Parse(_achievements[index].TargetProgress.text) <= value)
+        {
+            if (!_achievements[index].Finalized)
+            {
+                _audio.Play();
+                
+                _achievements[index].Finalized = true;
+                _achievements[index].CurrentProgress.text = _achievements[index].TargetProgress.text;
+                _achievements[index].SliderProgress.value = int.Parse(_achievements[index].TargetProgress.text);
+
+                var newBackGround = _achievements[index].BackGround;
+                newBackGround.color = Color.grey;
+                _achievements[index].BackGround = newBackGround;
+
+                YandexGame.savesData.achievements.achievementsCompleted[index] = 1;
+
+                _notification.CreateNewNotification(_achievements[index].ImageAchievement,
+                    _achievements[index].TextNameAchievement.text, _achievements[index].CurrentProgress.text);
+            }
+
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    
 }

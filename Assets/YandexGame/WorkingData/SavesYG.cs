@@ -36,9 +36,13 @@ namespace YG
 
         public int energy = 0;
         public int energyInClick = 1;
+        public int test = 10;
         public int energyInSecond = 1;
         public int damage = 1;
         public bool firstTry = true;
+        public int timerToUnblockReward = 300;
+        public bool wasShowReward = false;
+        public int maxRecord = 0;
 
         public Achievements achievements = new Achievements();
         

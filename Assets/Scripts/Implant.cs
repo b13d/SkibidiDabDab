@@ -7,8 +7,6 @@ using YG;
 
 public class Implant : MonoBehaviour
 {
-    private SavesYG _savesYG = null;
-
     [SerializeField]
     private int price = 50;
 
@@ -38,8 +36,6 @@ public class Implant : MonoBehaviour
 
     void Start()
     {
-        _savesYG = YandexGame.savesData;
-
         if (price >= 1000000)
         {
             _txtPriceImplant.text = (float)price / 1000000 + "ì" + " <sprite=\"Money\" name=\"Money\">";
@@ -65,7 +61,7 @@ public class Implant : MonoBehaviour
 
     public void Buy()
     {
-        if (_savesYG.energy < price)
+        if (YandexGame.savesData.energy < price)
         {
             return;
         }
@@ -78,8 +74,6 @@ public class Implant : MonoBehaviour
         {
             YandexGame.savesData.achievements.thingBuy += 1;
             YandexGame.savesData.firstBuyThing[_indexThing] = 1;
-        
-            YandexGame.SaveProgress();
         }
 
         if (_onlyOne)
@@ -87,12 +81,12 @@ public class Implant : MonoBehaviour
             GetComponent<Button>().interactable = false;
         }
 
-        _savesYG.energy -= price;
+        YandexGame.savesData.energy -= price;
 
         if (isDoubling)
         {
-            _savesYG.energyInSecond *= 2;
-            _savesYG.energyInClick *= 2;
+            YandexGame.savesData.energyInSecond *= 2;
+            YandexGame.savesData.energyInClick *= 2;
 
             price *= 4;
         }
@@ -100,16 +94,16 @@ public class Implant : MonoBehaviour
         {
             if (isSpeedAdd)
             {
-                _savesYG.energyInSecond += bonusAdd;
+                YandexGame.savesData.energyInSecond += bonusAdd;
             }
             else if (_clickAndInSecond)
             {
-                _savesYG.energyInSecond += bonusAdd;
-                _savesYG.energyInClick += bonusAdd;
+                YandexGame.savesData.energyInSecond += bonusAdd;
+                YandexGame.savesData.energyInClick += bonusAdd;
             }
             else
             {
-                _savesYG.energyInClick += bonusAdd;
+                YandexGame.savesData.energyInClick += bonusAdd;
             }
 
             price += Mathf.FloorToInt((float)price / 100 * percentAdd);
@@ -120,8 +114,6 @@ public class Implant : MonoBehaviour
 
         YandexGame.savesData.priceThings[_indexThing] = price; 
         YandexGame.savesData.percentAddThings[_indexThing] = percentAdd; 
-        
-        YandexGame.SaveProgress();
         
         _txtPriceImplant.text = price.ToString() + " <sprite=\"Money\" name=\"Money\">";
         GameManager.instance.UpdateUI();

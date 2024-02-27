@@ -10,7 +10,6 @@ public class TargetClick : MonoBehaviour
 {
     public Image _image;
     public bool _wasClick = false;
-    private SavesYG _savesYG = null;
 
     [SerializeField]
     private Slider _energy = null;
@@ -30,13 +29,13 @@ public class TargetClick : MonoBehaviour
     [SerializeField]
     private GameObject _firstPlay = null;
 
+    private AudioSource _audioTap;
+
     void Start()
     {
-
-
         _image = transform.GetChild(0).GetComponent<Image>();
-        _savesYG = YandexGame.savesData;
-
+        _audioTap = GetComponent<AudioSource>();
+        
         // проверка на то первый раз ли игрок зашел в игру
         // если первый то firstPlay не трогать
         // иначе firstPlay SetActive(false)
@@ -145,13 +144,14 @@ public class TargetClick : MonoBehaviour
 
     public void Click(int idTouch)
     {
+        _audioTap.Play();
+        
         YandexGame.savesData.achievements.click += 1;
         
         if (_firstPlay.activeSelf == true)
         {
             _firstPlay.SetActive(false);
             YandexGame.savesData.firstTry = false;
-            YandexGame.SaveProgress();
         }
 
         _lastTimeClick = 0f;
@@ -166,15 +166,12 @@ public class TargetClick : MonoBehaviour
 
         if (GameManager.instance.DoubleBonus)
         {
-            _savesYG.energy += _savesYG.energyInClick * 2;
+            YandexGame.savesData.energy += YandexGame.savesData.energyInClick * 2;
         }
         else
         {
-            _savesYG.energy += _savesYG.energyInClick;
+            YandexGame.savesData.energy += YandexGame.savesData.energyInClick;
         }
-
-
-        Debug.Log(_savesYG.energy);
         
         GameManager.instance.UpdateUI();
 
@@ -189,6 +186,8 @@ public class TargetClick : MonoBehaviour
         {
             Instantiate(newMoney, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
         }
+        
+        YandexGame.SaveProgress();
 
     }
 

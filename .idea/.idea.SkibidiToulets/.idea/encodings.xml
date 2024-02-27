@@ -6,5 +6,6 @@
     <file url="file://$PROJECT_DIR$/Assets/Scripts/Implant.cs" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/Assets/Scripts/NotificationsMain.cs" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/Assets/Scripts/TargetClick.cs" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/Assets/YandexGame/Example/Scripts/ReceivingPurchaseExample.cs" charset="windows-1251" />
   </component>
 </project>

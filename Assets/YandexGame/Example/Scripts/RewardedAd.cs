@@ -10,29 +10,19 @@ namespace YG.Example
 
         int moneyCount = 0;
 
-        void Awake()
-        {
-            AdMoney(0);
-        }
-
         private void OnEnable() => YandexGame.RewardVideoEvent += Rewarded;
         private void OnDisable() => YandexGame.RewardVideoEvent -= Rewarded;
 
         void Rewarded(int id)
         {
             if (id == AdID)
-                AdMoney(1);
+                AdMoney();
         }
 
-        void AdMoney(int count)
+        void AdMoney()
         {
             YandexGame.savesData.energyInClick *= 2;
             YandexGame.savesData.energyInSecond *= 2;
-            
-            YandexGame.SaveProgress();
-            
-            moneyCount += count;
-            textMoney.text = "" + moneyCount;
         }
     }
 }

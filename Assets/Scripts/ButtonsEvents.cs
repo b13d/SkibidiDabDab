@@ -1,6 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using YG;
+
+enum SoundsName
+{
+    ChestOpen = 0,
+    ChestClose,
+    Achievements
+}
 
 public class ButtonsEvents : MonoBehaviour
 {
@@ -22,6 +33,10 @@ public class ButtonsEvents : MonoBehaviour
     private float _xAchievementsOpen = 266f;
     private float _xAchievementsClose = 762f;
 
+    [SerializeField] private List<AudioClip> _audioClips = new List<AudioClip>();
+    
+    private AudioSource _audio;
+
     [SerializeField]
     GameObject _shop = null;
 
@@ -36,6 +51,12 @@ public class ButtonsEvents : MonoBehaviour
 
     [SerializeField]
     GameObject _contentAchievements = null;
+    
+    private float _second = 1f;
+
+    [SerializeField] private TextMeshProUGUI _txtRewardButton;
+    [SerializeField] private Button _rewardButton;
+    [SerializeField] private GameObject _panel;
 
     public void Achievements()
     {
@@ -45,16 +66,25 @@ public class ButtonsEvents : MonoBehaviour
         _isAchievementsMoving = true;
 
         _isOpenAchievements = !_isOpenAchievements;
-
-        //if (_isOpenAchievements)
-        //{
-        //    _shopBG.SetActive(true);
-        //}
-        //else
-        //{
-        //    _shopBG.SetActive(false);
-        //}
     }
+
+    private void Start()
+    {
+        _audio = GetComponent<AudioSource>();
+        
+        if (YandexGame.savesData.wasShowReward)
+        {
+            _rewardButton.interactable = false;
+            _panel.SetActive(true);
+            
+            int timer = YandexGame.savesData.timerToUnblockReward;
+            
+            int seconds = timer - Mathf.RoundToInt(timer / 60) * 60;
+            
+            _txtRewardButton.text = $"{timer / 60} мин {seconds} сек";
+        }
+    }
+    
 
     public void Shop()
     {
@@ -68,10 +98,12 @@ public class ButtonsEvents : MonoBehaviour
         if (_isOpenShop)
         {
             _shopBG.SetActive(true);
+            _audio.PlayOneShot(_audioClips[(int)SoundsName.ChestOpen]);
         }
         else
         {
             _shopBG.SetActive(false);
+            _audio.PlayOneShot(_audioClips[(int)SoundsName.ChestClose]);
         }
     }
 
@@ -95,20 +127,72 @@ public class ButtonsEvents : MonoBehaviour
 
         if (_isAchievementsMoving)
         {
-            
+
             if (_isOpenAchievements)
             {
-                Vector3 targetPos = new Vector3(_xAchievementsOpen, _achievements.transform.localPosition.y, _achievements.transform.localPosition.z);
+                Vector3 targetPos = new Vector3(_xAchievementsOpen, _achievements.transform.localPosition.y,
+                    _achievements.transform.localPosition.z);
 
-                _achievements.transform.localPosition = Vector3.Lerp(_achievements.transform.localPosition, targetPos, .1f);
+                _achievements.transform.localPosition =
+                    Vector3.Lerp(_achievements.transform.localPosition, targetPos, .1f);
             }
             else
             {
-                Vector3 targetPos = new Vector3( _xAchievementsClose, _achievements.transform.localPosition.y , _achievements.transform.localPosition.z);
+                Vector3 targetPos = new Vector3(_xAchievementsClose, _achievements.transform.localPosition.y,
+                    _achievements.transform.localPosition.z);
 
-                _achievements.transform.localPosition = Vector3.Lerp(_achievements.transform.localPosition, targetPos, .1f);
+                _achievements.transform.localPosition =
+                    Vector3.Lerp(_achievements.transform.localPosition, targetPos, .1f);
             }
         }
-  
+    }
+
+    public void DisabledButtonReward()
+    {
+        _panel.SetActive(true);
+        _rewardButton.interactable = false;
+        YandexGame.savesData.wasShowReward = true;
+    }
+    
+    private void Update()
+    {
+        CheckTime();
+    }
+
+    void CheckTime()
+    {
+        if (YandexGame.savesData.wasShowReward)
+        {
+            _second -= Time.deltaTime;
+            
+            if (_second < 0)
+            {
+                _second = 1f;
+
+                YandexGame.savesData.timerToUnblockReward -= 1;
+
+                int timer = YandexGame.savesData.timerToUnblockReward;
+
+                int seconds = timer - Mathf.RoundToInt(timer / 60) * 60;
+
+                _txtRewardButton.text = $"{timer / 60} мин {seconds} сек";
+                
+                // Debug.Log("Текст изменился");
+                
+                YandexGame.SaveProgress();
+
+                if (timer <= 0)
+                {
+                    YandexGame.savesData.wasShowReward = false;
+
+                    YandexGame.savesData.timerToUnblockReward = 300;
+                    
+                    _panel.SetActive(false);
+                    _rewardButton.interactable = true;
+                    
+                    YandexGame.SaveProgress();
+                }
+            }
+        }
     }
 }
