@@ -31,8 +31,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            YandexGame.ResetSaveProgress();
-            YandexGame.SaveProgress();
+            // YandexGame.ResetSaveProgress();
+            // YandexGame.SaveProgress();
             
             if (YandexGame.savesData.energyInSecond == 0 || YandexGame.savesData.energyInClick == 0)
             {
@@ -77,13 +77,19 @@ public class GameManager : MonoBehaviour
                 YandexGame.savesData.energy += YandexGame.savesData.energyInSecond;
             }
 
+            // Debug.Log("YandexGame.savesData.maxRecord: " + YandexGame.savesData.maxRecord);
+            // Debug.Log("YandexGame.savesData.energy: " + YandexGame.savesData.energy);
+            
             if (YandexGame.savesData.maxRecord < YandexGame.savesData.energy)
             {
-                YandexGame.NewLeaderboardScores("BigRecord", YandexGame.savesData.energy);
+                Debug.Log("Записываю рекорд");
+
 
                 YandexGame.savesData.maxRecord = YandexGame.savesData.energy;
             }
 
+            // YandexGame.NewLeaderboardScores("Records", YandexGame.savesData.energy);
+            
             UpdateUI();
             YandexGame.SaveProgress();
         }

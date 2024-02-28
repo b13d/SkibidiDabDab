@@ -27,8 +27,8 @@ public class ButtonsEvents : MonoBehaviour
     [SerializeField]
     private bool _isAchievementsMoving = false;
 
-    private float _yShopOpen = -225f;
-    private float _yShopClose = -1190f;
+    private float _yShopOpen = 0;
+    private float _yShopClose = -1000f;
 
     private float _xAchievementsOpen = 266f;
     private float _xAchievementsClose = 762f;
@@ -57,6 +57,8 @@ public class ButtonsEvents : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _txtRewardButton;
     [SerializeField] private Button _rewardButton;
     [SerializeField] private GameObject _panel;
+
+    [SerializeField] private GameObject _testPosObject;
 
     public void Achievements()
     {
@@ -109,8 +111,15 @@ public class ButtonsEvents : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Debug.Log("position: " + _testPosObject.transform.position);
+        Debug.Log("localPosition: " + _testPosObject.transform.localPosition);
+
+        _testPosObject.transform.localPosition = new Vector3(0, -1000f, 10);
+        
         if (_isShopMoving)
         {
+            Debug.Log("Передвижение магазина");
+            
             if (_isOpenShop)
             {
                 Vector3 targetPos = new Vector3(_shop.transform.localPosition.x, _yShopOpen, _shop.transform.localPosition.z);

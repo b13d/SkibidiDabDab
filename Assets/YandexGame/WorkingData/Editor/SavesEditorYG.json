@@ -1,5 +1,5 @@
 {
-    "idSave": 1,
+    "idSave": 2407,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
@@ -10,29 +10,29 @@
         true,
         false
     ],
-    "energy": 0,
-    "energyInClick": 1,
+    "energy": 3162,
+    "energyInClick": 5,
     "test": 10,
     "energyInSecond": 1,
     "damage": 1,
     "firstTry": true,
     "timerToUnblockReward": 300,
     "wasShowReward": false,
-    "maxRecord": 0,
+    "maxRecord": 3162,
     "achievements": {
-        "click": 0,
-        "playTime": 0,
-        "buy": 0,
+        "click": 503,
+        "playTime": 5,
+        "buy": 2,
         "haveMoney": 0,
-        "thingBuy": 0,
-        "spend": 0,
+        "thingBuy": 1,
+        "spend": 110,
         "achievementsCompleted": [
+            1,
             0,
             0,
+            1,
             0,
-            0,
-            0,
-            0,
+            1,
             0,
             0,
             0,
@@ -40,7 +40,7 @@
         ]
     },
     "priceThings": [
-        0,
+        84,
         0,
         0,
         0,
@@ -57,7 +57,7 @@
         0
     ],
     "percentAddThings": [
-        0,
+        60,
         0,
         0,
         0,
@@ -74,7 +74,7 @@
         0
     ],
     "firstBuyThing": [
-        0,
+        1,
         0,
         0,
         0,
