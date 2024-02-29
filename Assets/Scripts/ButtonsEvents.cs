@@ -74,11 +74,15 @@ public class ButtonsEvents : MonoBehaviour
 
             _txtRewardButton.text = $"{timer / 60} мин {seconds} сек";
         }
+        
+        _shop.SetActive(false);
     }
 
 
     public void Shop()
     {
+        _shop.SetActive(true);
+        
         Vector3 posContent = _contentShop.transform.localPosition;
         _contentShop.transform.localPosition = new Vector3(posContent.x, 0, posContent.z);
 
@@ -109,6 +113,11 @@ public class ButtonsEvents : MonoBehaviour
                 Vector2 targetPos = new Vector2(posAnchored.x, _yShopOpen);
 
                 _shop.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(posAnchored, targetPos, .1f);
+
+                if (posAnchored == targetPos)
+                {
+                    _isShopMoving = false;
+                }
             }
             else
             {
@@ -116,7 +125,13 @@ public class ButtonsEvents : MonoBehaviour
 
                 Vector2 targetPos = new Vector2(posAnchored.x, _yShopClose);
 
-                _shop.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(posAnchored, targetPos, .1f);
+                _shop.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(posAnchored, targetPos, .25f);
+                
+                if (posAnchored.y - 5 < -1000)
+                {
+                    _isShopMoving = false;
+                    _shop.SetActive(false);
+                }
             }
         }
 
