@@ -67,12 +67,8 @@ public class Achievements : MonoBehaviour
 
     private void Update()
     {
-        // if (_second < 0)
-        // {
-        //     _second = 1f;
-        //
-        // }
-        
+        // gameObject.GetComponent<RectTransform>().anchoredPosition += (new Vector2(10, 0)  * Time.deltaTime);
+
         CheckAchievements();
 
         

@@ -30,8 +30,8 @@ public class ButtonsEvents : MonoBehaviour
     private float _yShopOpen = 0;
     private float _yShopClose = -1000f;
 
-    private float _xAchievementsOpen = 266f;
-    private float _xAchievementsClose = 762f;
+    private float _xAchievementsOpen = 500f;
+    private float _xAchievementsClose = 0f;
 
     [SerializeField] private List<AudioClip> _audioClips = new List<AudioClip>();
     
@@ -58,8 +58,6 @@ public class ButtonsEvents : MonoBehaviour
     [SerializeField] private Button _rewardButton;
     [SerializeField] private GameObject _panel;
 
-    [SerializeField] private GameObject _testPosObject;
-
     public void Achievements()
     {
         Vector3 posContent = _contentAchievements.transform.localPosition;
@@ -68,6 +66,15 @@ public class ButtonsEvents : MonoBehaviour
         _isAchievementsMoving = true;
 
         _isOpenAchievements = !_isOpenAchievements;
+
+        // if (_isOpenAchievements)
+        // {
+        //     _achievements.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, _achievements.transform.localPosition.y);
+        // }
+        // else
+        // {
+        //     _achievements.GetComponent<RectTransform>().anchoredPosition = new Vector2(-500f, _achievements.transform.localPosition.y);
+        // }
     }
 
     private void Start()
@@ -111,26 +118,25 @@ public class ButtonsEvents : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log("position: " + _testPosObject.transform.position);
-        Debug.Log("localPosition: " + _testPosObject.transform.localPosition);
-
-        _testPosObject.transform.localPosition = new Vector3(0, -1000f, 10);
-        
         if (_isShopMoving)
         {
             Debug.Log("Передвижение магазина");
             
             if (_isOpenShop)
             {
-                Vector3 targetPos = new Vector3(_shop.transform.localPosition.x, _yShopOpen, _shop.transform.localPosition.z);
+                var posAnchored = _shop.GetComponent<RectTransform>().anchoredPosition;
+                
+                Vector2 targetPos = new Vector2(posAnchored.x, _yShopOpen);
 
-                _shop.transform.localPosition = Vector3.Lerp(_shop.transform.localPosition, targetPos, .1f);
+                _shop.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(posAnchored, targetPos, .1f);
             }
             else
             {
-                Vector3 targetPos = new Vector3(_shop.transform.localPosition.x, _yShopClose, _shop.transform.localPosition.z);
+                var posAnchored = _shop.GetComponent<RectTransform>().anchoredPosition;
+                
+                Vector2 targetPos = new Vector2(posAnchored.x, _yShopClose);
 
-                _shop.transform.localPosition = Vector3.Lerp(_shop.transform.localPosition, targetPos, .1f);
+                _shop.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(posAnchored, targetPos, .1f);
             }
         }
 
@@ -139,19 +145,23 @@ public class ButtonsEvents : MonoBehaviour
 
             if (_isOpenAchievements)
             {
-                Vector3 targetPos = new Vector3(_xAchievementsOpen, _achievements.transform.localPosition.y,
-                    _achievements.transform.localPosition.z);
-
-                _achievements.transform.localPosition =
-                    Vector3.Lerp(_achievements.transform.localPosition, targetPos, .1f);
+                var posAnchored = _achievements.GetComponent<RectTransform>().anchoredPosition;
+                
+                Vector2 targetPos = new Vector2( 0,posAnchored.y);
+                
+                // _achievements.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, posAnchored.y);
+                
+                _achievements.GetComponent<RectTransform>().anchoredPosition =
+                    Vector2.Lerp(posAnchored, targetPos, .1f);
             }
             else
             {
-                Vector3 targetPos = new Vector3(_xAchievementsClose, _achievements.transform.localPosition.y,
-                    _achievements.transform.localPosition.z);
-
-                _achievements.transform.localPosition =
-                    Vector3.Lerp(_achievements.transform.localPosition, targetPos, .1f);
+                var posAnchored = _achievements.GetComponent<RectTransform>().anchoredPosition;
+                
+                Vector2 targetPos = new Vector2(-500f, posAnchored.y);
+                
+                _achievements.GetComponent<RectTransform>().anchoredPosition =
+                    Vector2.Lerp(posAnchored, targetPos, .1f);
             }
         }
     }
