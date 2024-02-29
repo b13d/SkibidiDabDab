@@ -1,5 +1,5 @@
 {
-    "idSave": 3160,
+    "idSave": 3673,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
@@ -10,7 +10,7 @@
         true,
         false
     ],
-    "energy": 4028,
+    "energy": 5073,
     "energyInClick": 5,
     "test": 10,
     "energyInSecond": 1,
@@ -18,9 +18,9 @@
     "firstTry": false,
     "timerToUnblockReward": 300,
     "wasShowReward": false,
-    "maxRecord": 4028,
+    "maxRecord": 5073,
     "achievements": {
-        "click": 526,
+        "click": 631,
         "playTime": 5,
         "buy": 2,
         "haveMoney": 0,

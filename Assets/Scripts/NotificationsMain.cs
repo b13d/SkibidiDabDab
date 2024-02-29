@@ -42,8 +42,6 @@ public class NotificationsMain : MonoBehaviour
 
     private void AnimationDestroy()
     {
-        Debug.Log("Я тута");
-
         _notificationsTransform[0].GetComponent<Notification>().Move = true;
 
         _notificationsTransform[0].gameObject.GetComponent<Animator>().SetTrigger("Destroy");

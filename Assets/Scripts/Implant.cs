@@ -47,8 +47,6 @@ public class Implant : MonoBehaviour
             var priceInSave = YandexGame.savesData.priceThings[_indexThing];
             var newPercentAdd = YandexGame.savesData.percentAddThings[_indexThing];
             
-            Debug.Log("priceInSave: " + priceInSave);
-            
             if (priceInSave != 0)
             {
                 percentAdd = newPercentAdd;

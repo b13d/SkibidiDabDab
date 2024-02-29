@@ -46,8 +46,6 @@ public class TargetClick : MonoBehaviour
         {
             if (YandexGame.EnvironmentData.isDesktop)
             {
-                Debug.Log("DEKSTOP CLICK DEKSTOP CLICK DEKSTOP CLICK");
-
                 Dekstop();
             }
         }
@@ -105,8 +103,6 @@ public class TargetClick : MonoBehaviour
                 if (!hit.collider.CompareTag("Implant") && !hit.collider.CompareTag("Shop") &&
                     !hit.collider.CompareTag("Achievement"))
                 {
-                    Debug.Log("Тыкнул с телефона");
-
                     Click(touchId);
                 }
             }

@@ -71,25 +71,14 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("YandexGame.savesData.test: " + YandexGame.savesData.test);
-
-                
                 YandexGame.savesData.energy += YandexGame.savesData.energyInSecond;
             }
 
-            // Debug.Log("YandexGame.savesData.maxRecord: " + YandexGame.savesData.maxRecord);
-            // Debug.Log("YandexGame.savesData.energy: " + YandexGame.savesData.energy);
             
             if (YandexGame.savesData.maxRecord < YandexGame.savesData.energy)
             {
-                Debug.Log("Записываю рекорд");
-
-
                 YandexGame.savesData.maxRecord = YandexGame.savesData.energy;
             }
-
-            // YandexGame.NewLeaderboardScores("Records", YandexGame.savesData.energy);
-            
             UpdateUI();
             YandexGame.SaveProgress();
         }

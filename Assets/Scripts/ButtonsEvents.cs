@@ -15,17 +15,13 @@ enum SoundsName
 
 public class ButtonsEvents : MonoBehaviour
 {
-    [SerializeField]
-    private bool _isOpenShop = false;
+    [SerializeField] private bool _isOpenShop = false;
 
-    [SerializeField]
-    private bool _isShopMoving = false;
+    [SerializeField] private bool _isShopMoving = false;
 
-    [SerializeField]
-    private bool _isOpenAchievements = false;
+    [SerializeField] private bool _isOpenAchievements = false;
 
-    [SerializeField]
-    private bool _isAchievementsMoving = false;
+    [SerializeField] private bool _isAchievementsMoving = false;
 
     private float _yShopOpen = 0;
     private float _yShopClose = -1000f;
@@ -34,24 +30,19 @@ public class ButtonsEvents : MonoBehaviour
     private float _xAchievementsClose = 0f;
 
     [SerializeField] private List<AudioClip> _audioClips = new List<AudioClip>();
-    
+
     private AudioSource _audio;
 
-    [SerializeField]
-    GameObject _shop = null;
+    [SerializeField] GameObject _shop = null;
 
-    [SerializeField]
-    GameObject _achievements = null;
+    [SerializeField] GameObject _achievements = null;
 
-    [SerializeField]
-    GameObject _shopBG = null;
+    [SerializeField] GameObject _shopBG = null;
 
-    [SerializeField]
-    GameObject _contentShop = null;
+    [SerializeField] GameObject _contentShop = null;
 
-    [SerializeField]
-    GameObject _contentAchievements = null;
-    
+    [SerializeField] GameObject _contentAchievements = null;
+
     private float _second = 1f;
 
     [SerializeField] private TextMeshProUGUI _txtRewardButton;
@@ -66,34 +57,25 @@ public class ButtonsEvents : MonoBehaviour
         _isAchievementsMoving = true;
 
         _isOpenAchievements = !_isOpenAchievements;
-
-        // if (_isOpenAchievements)
-        // {
-        //     _achievements.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, _achievements.transform.localPosition.y);
-        // }
-        // else
-        // {
-        //     _achievements.GetComponent<RectTransform>().anchoredPosition = new Vector2(-500f, _achievements.transform.localPosition.y);
-        // }
     }
 
     private void Start()
     {
         _audio = GetComponent<AudioSource>();
-        
+
         if (YandexGame.savesData.wasShowReward)
         {
             _rewardButton.interactable = false;
             _panel.SetActive(true);
-            
+
             int timer = YandexGame.savesData.timerToUnblockReward;
-            
+
             int seconds = timer - Mathf.RoundToInt(timer / 60) * 60;
-            
+
             _txtRewardButton.text = $"{timer / 60} мин {seconds} сек";
         }
     }
-    
+
 
     public void Shop()
     {
@@ -120,12 +102,10 @@ public class ButtonsEvents : MonoBehaviour
     {
         if (_isShopMoving)
         {
-            Debug.Log("Передвижение магазина");
-            
             if (_isOpenShop)
             {
                 var posAnchored = _shop.GetComponent<RectTransform>().anchoredPosition;
-                
+
                 Vector2 targetPos = new Vector2(posAnchored.x, _yShopOpen);
 
                 _shop.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(posAnchored, targetPos, .1f);
@@ -133,7 +113,7 @@ public class ButtonsEvents : MonoBehaviour
             else
             {
                 var posAnchored = _shop.GetComponent<RectTransform>().anchoredPosition;
-                
+
                 Vector2 targetPos = new Vector2(posAnchored.x, _yShopClose);
 
                 _shop.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(posAnchored, targetPos, .1f);
@@ -142,26 +122,33 @@ public class ButtonsEvents : MonoBehaviour
 
         if (_isAchievementsMoving)
         {
-
             if (_isOpenAchievements)
             {
                 var posAnchored = _achievements.GetComponent<RectTransform>().anchoredPosition;
-                
-                Vector2 targetPos = new Vector2( 0,posAnchored.y);
-                
-                // _achievements.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, posAnchored.y);
-                
+
+                Vector2 targetPos = new Vector2(-500f, posAnchored.y);
+
                 _achievements.GetComponent<RectTransform>().anchoredPosition =
                     Vector2.Lerp(posAnchored, targetPos, .1f);
+
+                if (posAnchored == targetPos)
+                {
+                    _isAchievementsMoving = false;
+                }
             }
             else
             {
                 var posAnchored = _achievements.GetComponent<RectTransform>().anchoredPosition;
-                
-                Vector2 targetPos = new Vector2(-500f, posAnchored.y);
-                
+
+                Vector2 targetPos = new Vector2(0, posAnchored.y);
+
                 _achievements.GetComponent<RectTransform>().anchoredPosition =
                     Vector2.Lerp(posAnchored, targetPos, .1f);
+
+                if (posAnchored == targetPos)
+                {
+                    _isAchievementsMoving = false;
+                }
             }
         }
     }
@@ -172,7 +159,7 @@ public class ButtonsEvents : MonoBehaviour
         _rewardButton.interactable = false;
         YandexGame.savesData.wasShowReward = true;
     }
-    
+
     private void Update()
     {
         CheckTime();
@@ -183,7 +170,7 @@ public class ButtonsEvents : MonoBehaviour
         if (YandexGame.savesData.wasShowReward)
         {
             _second -= Time.deltaTime;
-            
+
             if (_second < 0)
             {
                 _second = 1f;
@@ -195,9 +182,9 @@ public class ButtonsEvents : MonoBehaviour
                 int seconds = timer - Mathf.RoundToInt(timer / 60) * 60;
 
                 _txtRewardButton.text = $"{timer / 60} мин {seconds} сек";
-                
+
                 // Debug.Log("Текст изменился");
-                
+
                 YandexGame.SaveProgress();
 
                 if (timer <= 0)
@@ -205,10 +192,10 @@ public class ButtonsEvents : MonoBehaviour
                     YandexGame.savesData.wasShowReward = false;
 
                     YandexGame.savesData.timerToUnblockReward = 300;
-                    
+
                     _panel.SetActive(false);
                     _rewardButton.interactable = true;
-                    
+
                     YandexGame.SaveProgress();
                 }
             }
