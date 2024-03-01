@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            YandexGame.NewLeaderboardScores("Records", YandexGame.savesData.energy);
+            
             // YandexGame.ResetSaveProgress();
             // YandexGame.SaveProgress();
             

@@ -33,9 +33,13 @@ public class Implant : MonoBehaviour
 
     [SerializeField] private bool _clickAndInSecond = false;
 
+    private AudioSource _audio;
+
 
     void Start()
     {
+        _audio = GetComponent<AudioSource>();
+        
         if (price >= 1000000)
         {
             _txtPriceImplant.text = (float)price / 1000000 + "ì" + " <sprite=\"Money\" name=\"Money\">";
@@ -63,7 +67,8 @@ public class Implant : MonoBehaviour
         {
             return;
         }
-        
+
+        _audio.Play();
 
         YandexGame.savesData.achievements.buy += 1;
         YandexGame.savesData.achievements.spend += price;
