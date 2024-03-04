@@ -25,7 +25,7 @@ public class Achievements : MonoBehaviour
 
     float _timeToAchievement = 60f;
 
-    private float _second = 1f;
+    private float _second = 2f;
 
 
     void Start()
@@ -33,6 +33,7 @@ public class Achievements : MonoBehaviour
         _audio = GetComponent<AudioSource>();
         
         CreateAchievements();
+        
     }
 
 
@@ -67,6 +68,16 @@ public class Achievements : MonoBehaviour
 
     private void Update()
     {
+        // _second -= Time.deltaTime;
+        //
+        // if (_second < 0)
+        // {
+        //     _second = 2;
+        //     
+        //     YandexGame.NewLeaderboardScores("Records", 0);
+        //     Debug.Log("Сохранение рекорда");
+        // }
+
         // gameObject.GetComponent<RectTransform>().anchoredPosition += (new Vector2(10, 0)  * Time.deltaTime);
 
         CheckAchievements();

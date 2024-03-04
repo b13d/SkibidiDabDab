@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour
 
     private bool _doubleBonus;
 
-
     private void Start()
     {
         if (instance != null)
@@ -31,8 +30,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            YandexGame.NewLeaderboardScores("Records", YandexGame.savesData.energy);
-            
+            StartCoroutine(SaveRecord());
+
             // YandexGame.ResetSaveProgress();
             // YandexGame.SaveProgress();
             
@@ -52,6 +51,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    IEnumerator SaveRecord()
+    {
+        yield return new WaitForSeconds(5f);
+        
+        YandexGame.NewLeaderboardScores("Records", YandexGame.savesData.maxRecord);  
+        
+        Debug.Log("Сохранение рекорда");
+
+        StartCoroutine(SaveRecord());
+    }
+    
     public bool DoubleBonus
     {
         set { _doubleBonus = value; }
@@ -81,9 +91,10 @@ public class GameManager : MonoBehaviour
             {
                 YandexGame.savesData.maxRecord = YandexGame.savesData.energy;
             }
-            UpdateUI();
             YandexGame.SaveProgress();
         }
+        
+        UpdateUI();
     }
 
     public void UpdateUI()
