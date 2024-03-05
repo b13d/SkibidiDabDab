@@ -49,14 +49,30 @@ public class ButtonsEvents : MonoBehaviour
     [SerializeField] private Button _rewardButton;
     [SerializeField] private GameObject _panel;
 
+    private int timerToUnblockReward = 0;
+
+    public int GetTimerToUnblockReward
+    {
+        get { return timerToUnblockReward; }
+    }
+    
     public void Achievements()
     {
-        Vector3 posContent = _contentAchievements.transform.localPosition;
-        _contentAchievements.transform.localPosition = new Vector3(posContent.x, 0, posContent.z);
+        if (GameManager.instance._isPause)
+        {
+            return;
+        }
+        else
+        {
+            Vector3 posContent = _contentAchievements.transform.localPosition;
+            _contentAchievements.transform.localPosition = new Vector3(posContent.x, 0, posContent.z);
 
-        _isAchievementsMoving = true;
+            _isAchievementsMoving = true;
 
-        _isOpenAchievements = !_isOpenAchievements;
+            _isOpenAchievements = !_isOpenAchievements;
+        }
+        
+
     }
 
     private void Start()
@@ -68,11 +84,11 @@ public class ButtonsEvents : MonoBehaviour
             _rewardButton.interactable = false;
             _panel.SetActive(true);
 
-            int timer = YandexGame.savesData.timerToUnblockReward;
+            timerToUnblockReward = YandexGame.savesData.timerToUnblockReward;
 
-            int seconds = timer - Mathf.RoundToInt(timer / 60) * 60;
+            int seconds = timerToUnblockReward - Mathf.RoundToInt(timerToUnblockReward / 60) * 60;
 
-            _txtRewardButton.text = $"{timer / 60} мин {seconds} сек";
+            _txtRewardButton.text = $"{timerToUnblockReward / 60} мин {seconds} сек";
         }
         
         _shop.SetActive(false);
@@ -81,24 +97,31 @@ public class ButtonsEvents : MonoBehaviour
 
     public void Shop()
     {
-        _shop.SetActive(true);
-        
-        Vector3 posContent = _contentShop.transform.localPosition;
-        _contentShop.transform.localPosition = new Vector3(posContent.x, 0, posContent.z);
-
-        _isShopMoving = true;
-
-        _isOpenShop = !_isOpenShop;
-
-        if (_isOpenShop)
+        if (GameManager.instance._isPause)
         {
-            _shopBG.SetActive(true);
-            _audio.PlayOneShot(_audioClips[(int)SoundsName.ChestOpen]);
+            return;
         }
         else
         {
-            _shopBG.SetActive(false);
-            _audio.PlayOneShot(_audioClips[(int)SoundsName.ChestClose]);
+            _shop.SetActive(true);
+        
+            Vector3 posContent = _contentShop.transform.localPosition;
+            _contentShop.transform.localPosition = new Vector3(posContent.x, 0, posContent.z);
+
+            _isShopMoving = true;
+
+            _isOpenShop = !_isOpenShop;
+
+            if (_isOpenShop)
+            {
+                _shopBG.SetActive(true);
+                _audio.PlayOneShot(_audioClips[(int)SoundsName.ChestOpen]);
+            }
+            else
+            {
+                _shopBG.SetActive(false);
+                _audio.PlayOneShot(_audioClips[(int)SoundsName.ChestClose]);
+            }
         }
     }
 
@@ -170,6 +193,11 @@ public class ButtonsEvents : MonoBehaviour
 
     public void DisabledButtonReward()
     {
+        if (GameManager.instance._isPause)
+        {
+            return;
+        }
+        
         _panel.SetActive(true);
         _rewardButton.interactable = false;
         YandexGame.savesData.wasShowReward = true;
@@ -190,23 +218,24 @@ public class ButtonsEvents : MonoBehaviour
             {
                 _second = 1f;
 
-                YandexGame.savesData.timerToUnblockReward -= 1;
+                // YandexGame.savesData.timerToUnblockReward -= 1;
 
-                int timer = YandexGame.savesData.timerToUnblockReward;
+                timerToUnblockReward -= 1;
 
-                int seconds = timer - Mathf.RoundToInt(timer / 60) * 60;
+                int seconds = timerToUnblockReward - Mathf.RoundToInt(timerToUnblockReward / 60) * 60;
 
-                _txtRewardButton.text = $"{timer / 60} мин {seconds} сек";
+                _txtRewardButton.text = $"{timerToUnblockReward / 60} мин {seconds} сек";
 
                 // Debug.Log("Текст изменился");
 
-                YandexGame.SaveProgress();
+                // YandexGame.SaveProgress();
 
-                if (timer <= 0)
+                if (timerToUnblockReward <= 0)
                 {
                     YandexGame.savesData.wasShowReward = false;
 
                     YandexGame.savesData.timerToUnblockReward = 300;
+                    timerToUnblockReward = 300;
 
                     _panel.SetActive(false);
                     _rewardButton.interactable = true;

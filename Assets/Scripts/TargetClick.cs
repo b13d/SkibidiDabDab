@@ -145,14 +145,22 @@ public class TargetClick : MonoBehaviour
 
     public void Click(int idTouch)
     {
+        if (Time.timeScale == 0)
+        {
+            return;
+        }
+        
         _audioTap.Play();
 
-        YandexGame.savesData.achievements.click += 1;
+        GameManager.instance.CountClick += 1;
+        // YandexGame.savesData.achievements.click += 1;
 
         if (_firstPlay.activeSelf == true)
         {
             _firstPlay.SetActive(false);
             YandexGame.savesData.firstTry = false;
+            
+            YandexGame.SaveProgress();
         }
 
         _lastTimeClick = 0f;
@@ -167,11 +175,14 @@ public class TargetClick : MonoBehaviour
 
         if (GameManager.instance.DoubleBonus)
         {
-            YandexGame.savesData.energy += YandexGame.savesData.energyInClick * 2;
+            GameManager.instance.GetMoney += GameManager.instance.GetMoneyInClick * 2;
+            // YandexGame.savesData.energy += YandexGame.savesData.energyInClick * 2;
         }
         else
         {
-            YandexGame.savesData.energy += YandexGame.savesData.energyInClick;
+            GameManager.instance.GetMoney += GameManager.instance.GetMoneyInClick;
+
+            // YandexGame.savesData.energy += YandexGame.savesData.energyInClick;
         }
 
         GameManager.instance.UpdateUI();
@@ -189,6 +200,6 @@ public class TargetClick : MonoBehaviour
             Instantiate(newMoney, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
         }
 
-        YandexGame.SaveProgress();
+        // YandexGame.SaveProgress();
     }
 }

@@ -417,11 +417,12 @@ PlayerSettings:
   openGLRequireES31AEP: 0
   openGLRequireES32: 0
   m_TemplateCustomTags:
-    CHOOSE_LOADING_TYPE: 
+    CHOOSE_LOADING_TYPE: 4
     CONFIGURE_SHADOWS_AROUND_CANVAS: 
     CONNECT_PLUGIN: YG1.6
-    CUSTOMIZE_BARS_BACKGROUND: 
-    CUSTOMIZE_LOADING_SCREEN_BACKGROUND: 
+    CUSTOMIZE_BARS_BACKGROUND: backgroundImage = "linear-gradient(#2976fa, #6919c6)"
+    CUSTOMIZE_LOADING_SCREEN_BACKGROUND: backgroundImage = "linear-gradient(#2976fa,
+      #6919c6)"
     CUSTOMIZE_LOGO: 
     CUSTOM_EVENT_IN_CSS: 
     CUSTOM_EVENT_IN_HTML: 
@@ -432,6 +433,7 @@ PlayerSettings:
     GP_SHOW_PRELOADER_AD: 
     GP_TOKEN: 
     IGB_GAME_DISTRIBUTION_GAME_ID: 
+    IGB_VK_PLAY_GAME_ID: 
     LOCK_ASPECT_RATIO: pc
     YG_BANNER_DYNAMIC_1: 
     YG_BANNER_DYNAMIC_2: 
@@ -691,7 +693,7 @@ PlayerSettings:
   webGLDebugSymbols: 0
   webGLEmscriptenArgs: 
   webGLModulesDirectory: 
-  webGLTemplate: PROJECT:AT2.0.6
+  webGLTemplate: PROJECT:AT2.0.8
   webGLAnalyzeBuildSize: 0
   webGLUseEmbeddedResources: 0
   webGLCompressionFormat: 0

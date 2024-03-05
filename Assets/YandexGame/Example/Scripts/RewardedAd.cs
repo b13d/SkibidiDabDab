@@ -21,8 +21,10 @@ namespace YG.Example
 
         void AdMoney()
         {
-            YandexGame.savesData.energyInClick *= 2;
-            YandexGame.savesData.energyInSecond *= 2;
+            GameManager.instance.GetMoneyInClick *= 2;
+            GameManager.instance.GetMoneyInSecond *= 2;
+            // YandexGame.savesData.energyInClick *= 2;
+            // YandexGame.savesData.energyInSecond *= 2;
         }
     }
 }

@@ -263,6 +263,11 @@ namespace YG
 
         public void _RewardedShow(int id)
         {
+            if (GameManager.instance._isPause)
+            {
+                return;
+            }
+            
             Message("Rewarded Ad Show");
 
             if (!nowFullAd && !nowVideoAd)

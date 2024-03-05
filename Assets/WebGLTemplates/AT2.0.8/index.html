@@ -17,6 +17,9 @@
     #if CONNECT_PLUGIN == "GP1.2.3"
     <script src="./Files/GP1.2.3/gamepush-unity.js"></script>
     #endif
+    #if CONNECT_PLUGIN == "GP1.2.4"
+    <script src="./Files/GP1.2.4/gamepush-unity.js"></script>
+    #endif
     #if CHOOSE_LOADING_TYPE
     #endif
     #if LOCK_ASPECT_RATIO
@@ -163,6 +166,11 @@
   	background-repeat: no-repeat;
  	background-size: cover;
         background-attachment: fixed;
+
+        /* Скрываем скролл */
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        scrollbar-height: none;
       }
       /* Канвас и загрузочный экран */
       #canvas {
@@ -209,10 +217,25 @@
  	background-size: contain;
         background-attachment: scroll;
       }
+      .console_helper {
+        position: absolute;
+        background-color: white;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        -webkit-box-shadow: 0px 0px 10px 5px rgba(34, 60, 80, 0.24);
+        -moz-box-shadow: 0px 0px 10px 5px rgba(34, 60, 80, 0.24);
+        box-shadow: 0px 0px 10px 5px rgba(34, 60, 80, 0.24);
+        overflow: hidden;
+        display: none;
+      }
+      p {
+        font-family: Arial, Helvetica, sans-serif;
+        word-wrap: break-word;
+      }
       #if CUSTOM_EVENT_IN_CSS !== "" && CUSTOM_EVENT_IN_CSS !== " " && CUSTOM_EVENT_IN_CSS !== "-"
       {{{ CUSTOM_EVENT_IN_CSS }}}
       #endif
-      #if CONNECT_PLUGIN == "YG1.6" || CONNECT_PLUGIN == "YG1.6.1" || CONNECT_PLUGIN == "YG1.5.2" || CONNECT_PLUGIN == "YG1.5.1" || CONNECT_PLUGIN == "YG1.5" || CONNECT_PLUGIN == "YG1.4" || CONNECT_PLUGIN == "GP1.2.1" || CONNECT_PLUGIN == "GP1.1.0" || CONNECT_PLUGIN == "GP1.2.2" || CONNECT_PLUGIN == "GP1.2.3"
+      #if CONNECT_PLUGIN == "YG1.6" || CONNECT_PLUGIN == "YG1.6.1" || CONNECT_PLUGIN == "YG1.5.2" || CONNECT_PLUGIN == "YG1.5.1" || CONNECT_PLUGIN == "YG1.5" || CONNECT_PLUGIN == "YG1.4" || CONNECT_PLUGIN == "GP1.2.1" || CONNECT_PLUGIN == "GP1.1.0" || CONNECT_PLUGIN == "GP1.2.2" || CONNECT_PLUGIN == "GP1.2.3" || CONNECT_PLUGIN == "GP1.2.4"
       .spinner {
         position: absolute;
     	border: 5px solid #FFF;
@@ -236,7 +259,7 @@
         }
       }
       #endif
-      #if CONNECT_PLUGIN == "IGB1.9.2" || CONNECT_PLUGIN == "IGB1.10.1" || CONNECT_PLUGIN == "IGB1.11.0"
+      #if CONNECT_PLUGIN == "IGB1.9.2" || CONNECT_PLUGIN == "IGB1.10.1" || CONNECT_PLUGIN == "IGB1.11.0" || CONNECT_PLUGIN == "IGB1.12.0"
       #banner-container {
         position: absolute;
         bottom: 0px;
@@ -250,12 +273,12 @@
     <!-- Additional head modules -->
     #endif
 
-    #if CONNECT_PLUGIN == "GP1.2.1" || CONNECT_PLUGIN == "GP1.1.0" || CONNECT_PLUGIN == "GP1.2.2" || CONNECT_PLUGIN == "GP1.2.3"
+    #if CONNECT_PLUGIN == "GP1.2.1" || CONNECT_PLUGIN == "GP1.1.0" || CONNECT_PLUGIN == "GP1.2.2" || CONNECT_PLUGIN == "GP1.2.3" || CONNECT_PLUGIN == "GP1.2.4"
     <script>
       const projectId = "{{{ GP_PROJECT_ID.replace(/ /g, '') }}}";
       const publicToken = "{{{ GP_TOKEN.replace(/ /g, '') }}}";
       const showPreloaderAd = "{{{ GP_SHOW_PRELOADER_AD.replace(/ /g, '') }}}";
-      #if CONNECT_PLUGIN == "GP1.2.1" || CONNECT_PLUGIN == "GP1.2.2" || CONNECT_PLUGIN == "GP1.2.3"
+      #if CONNECT_PLUGIN == "GP1.2.1" || CONNECT_PLUGIN == "GP1.2.2" || CONNECT_PLUGIN == "GP1.2.3" || CONNECT_PLUGIN == "GP1.2.4"
       const autocallGameReady = "{{{ GP_GAMEREADY_AUTOCALL_DELAY.replace(/ /g, '') }}}";
       #endif
     </script>
@@ -284,7 +307,7 @@
        gp.player.ready.finally(_gpAwaiter.done);
 
        await _unityAwaiter.ready;
-       #if CONNECT_PLUGIN == "GP1.2.1" || CONNECT_PLUGIN == "GP1.2.2" || CONNECT_PLUGIN == "GP1.2.3"
+       #if CONNECT_PLUGIN == "GP1.2.1" || CONNECT_PLUGIN == "GP1.2.2" || CONNECT_PLUGIN == "GP1.2.3" || CONNECT_PLUGIN == "GP1.2.4"
        if (autocallGameReady != null && parseFloat(autocallGameReady) > 0) {
          setTimeout(() => gp.gameStart(), parseFloat(autocallGameReady));
        }
@@ -305,17 +328,20 @@
     <!-- Additional body modules -->
     #endif
     <canvas id="canvas" class="canvas" tabindex="-1"></canvas>
-    #if CONNECT_PLUGIN == "IGB1.9.2" || CONNECT_PLUGIN == "IGB1.10.1" || CONNECT_PLUGIN == "IGB1.11.0"
+    #if CONNECT_PLUGIN == "IGB1.9.2" || CONNECT_PLUGIN == "IGB1.10.1" || CONNECT_PLUGIN == "IGB1.11.0" || CONNECT_PLUGIN == "IGB1.12.0"
     <div id="banner-container" style="display: none"></div>
     #endif
     <div class="loading_bg">
       <div class="loading">
-        #if CONNECT_PLUGIN == "YG1.6" || CONNECT_PLUGIN == "YG1.6.1" || CONNECT_PLUGIN == "YG1.5.2" || CONNECT_PLUGIN == "YG1.5.1" || CONNECT_PLUGIN == "YG1.5" || CONNECT_PLUGIN == "YG1.4" || CONNECT_PLUGIN == "GP1.2.1" || CONNECT_PLUGIN == "GP1.1.0" || CONNECT_PLUGIN == "GP1.2.2" || CONNECT_PLUGIN == "GP1.2.3"
+        <div class="console_helper">
+          <p id="console_helper_text" style="position: absolute; overflow-x: hidden; overflow-y: scroll; scroll-behavior: smooth; scrollbar-width: none; margin: auto; top: 0; left: 0; bottom: 0; right: 0; overflow-width: hidden; text-align: left;"></p>
+        </div>
+        #if CONNECT_PLUGIN == "YG1.6" || CONNECT_PLUGIN == "YG1.6.1" || CONNECT_PLUGIN == "YG1.5.2" || CONNECT_PLUGIN == "YG1.5.1" || CONNECT_PLUGIN == "YG1.5" || CONNECT_PLUGIN == "YG1.4" || CONNECT_PLUGIN == "GP1.2.1" || CONNECT_PLUGIN == "GP1.1.0" || CONNECT_PLUGIN == "GP1.2.2" || CONNECT_PLUGIN == "GP1.2.3" || CONNECT_PLUGIN == "GP1.2.4"
         <div class="spinner"></div>
         #endif
         <div class="loading_logo"></div>
         <div class="loading_bar">
-          <div class="loading_bar_fill">
+          <div class="loading_bar_fill"></div>
         </div>
       </div>
     </div>
@@ -450,6 +476,9 @@
     #if CONNECT_PLUGIN == "IGB1.11.0"
     <script src="./Files/IGB1.11.0/instant-games-bridge.js"></script>
     #endif
+    #if CONNECT_PLUGIN == "IGB1.12.0"
+    <script src="./Files/IGB1.12.0/instant-games-bridge.js"></script>
+    #endif
     <script>
       var canvas = document.querySelector("#canvas");
       var loading_bg = document.querySelector(".loading_bg");
@@ -457,12 +486,18 @@
       var loading_bar = document.querySelector(".loading_bar");
       var loading_bar_fill = document.querySelector(".loading_bar_fill");
       var loading_logo = document.querySelector(".loading_logo");
-      #if CONNECT_PLUGIN == "YG1.6" || CONNECT_PLUGIN == "YG1.6.1" || CONNECT_PLUGIN == "YG1.5.2" || CONNECT_PLUGIN == "YG1.5.1" || CONNECT_PLUGIN == "YG1.5" || CONNECT_PLUGIN == "YG1.4" || CONNECT_PLUGIN == "GP1.2.1" || CONNECT_PLUGIN == "GP1.1.0" || CONNECT_PLUGIN == "GP1.2.2" || CONNECT_PLUGIN == "GP1.2.3"
+      var console_helper = document.querySelector(".console_helper");
+      var console_helper_text = document.getElementById("console_helper_text");
+      #if CONNECT_PLUGIN == "YG1.6" || CONNECT_PLUGIN == "YG1.6.1" || CONNECT_PLUGIN == "YG1.5.2" || CONNECT_PLUGIN == "YG1.5.1" || CONNECT_PLUGIN == "YG1.5" || CONNECT_PLUGIN == "YG1.4" || CONNECT_PLUGIN == "GP1.2.1" || CONNECT_PLUGIN == "GP1.1.0" || CONNECT_PLUGIN == "GP1.2.2" || CONNECT_PLUGIN == "GP1.2.3" || CONNECT_PLUGIN == "GP1.2.4"
       const spinner = document.querySelector('.spinner');
       #endif
-      #if CONNECT_PLUGIN == "IGB1.9.2" || CONNECT_PLUGIN == "IGB1.10.1" || CONNECT_PLUGIN == "IGB1.11.0"
+      #if CONNECT_PLUGIN == "IGB1.9.2" || CONNECT_PLUGIN == "IGB1.10.1" || CONNECT_PLUGIN == "IGB1.11.0" || CONNECT_PLUGIN == "IGB1.12.0"
       let bannerContainer = document.getElementById('banner-container');
       #endif
+
+      // Для того, чтобы текст правильно масштабировался
+      var scaleFactor;
+      var enableConsoleHelper = true;
 
       // Подключаем ATinstance для связи Unity с браузером
       var ATinstance = null;
@@ -476,6 +511,17 @@
           }
         };
         checkNull();
+      }
+
+      // Для консоли помощника
+      function unityShowBanner(msg, type) {
+        if(type == 'error' && enableConsoleHelper) {
+          if(msg.includes("Unable to parse")) {
+            console_helper.style.display = "block";
+            console_helper_text.innerHTML = '<strong>Внимание, ошибка!</strong><br>Пожалуйста, вернитесь в Unity и пройдите по пути File > Build Settings > Player Settings > Publishing Settings.<tagname style="margin-left: 2%; display: block;">• Если Compression Format стоит на Brotli или Gzip, включите галочку Decompression Fallback.<br>• Если Compression Format стоит на None, снимите галочку с Decompression Fallback.</tagname><br>Чтобы скрыть эту панель, введите в поле Custom Event in JS <a style="font-family: monospace; background: #edeef0;">enableConsoleHelper = false;</a>';
+            console.log('Внимание, ошибка! Пожалуйста, вернитесь в Unity и пройдите по пути File > Build Settings > Player Settings > Publishing Settings. 1) Если Compression Format стоит на Brotli или Gzip, включите галочку Decompression Fallback. 2) Если Compression Format стоит на None, снимите галочку с Decompression Fallback. 3) Чтобы скрыть это сообщение, введите в поле Custom Event in JS enableConsoleHelper = false;');
+          }
+        }
       }
 
       // Выключаем появление меню при правом клике мыши
@@ -579,9 +625,11 @@
         if(window.innerWidth / window.innerHeight > aspectRatio) {
           object.style.width = window.innerHeight * aspectRatio + "px";
           object.style.height = "100%";
+          scaleFactor = window.innerHeight * aspectRatio / 21;
         } else {
           object.style.width = "100%";
           object.style.height = window.innerWidth / aspectRatio + "px";
+          scaleFactor = window.innerWidth / aspectRatio / 34;
         }
 
         // Центрируем
@@ -670,10 +718,20 @@
         }
         #endif
         #endif
+
+        console_helper_text.style.fontSize = scaleFactor * 0.7 + 'px';
+
         if(window.innerWidth < window.innerHeight) {
+          // Настройка консоли помощника
+          console_helper.style.top = '15%';
+          console_helper.style.width = '80%';
+          console_helper.style.height = '20%';
+          console_helper.style.borderRadius = '3% 3% 3% 3% / 7%';
+          console_helper_text.style.padding = "3% 3% 3% 3%";
+
           isPortrait = true;
           lock(loading, 9/16);
-          #if CONNECT_PLUGIN == "YG1.6" || CONNECT_PLUGIN == "YG1.6.1" || CONNECT_PLUGIN == "YG1.5.2" || CONNECT_PLUGIN == "YG1.5.1" || CONNECT_PLUGIN == "YG1.5" || CONNECT_PLUGIN == "YG1.4" || CONNECT_PLUGIN == "GP1.2.1" || CONNECT_PLUGIN == "GP1.1.0" || CONNECT_PLUGIN == "GP1.2.2" || CONNECT_PLUGIN == "GP1.2.3"
+          #if CONNECT_PLUGIN == "YG1.6" || CONNECT_PLUGIN == "YG1.6.1" || CONNECT_PLUGIN == "YG1.5.2" || CONNECT_PLUGIN == "YG1.5.1" || CONNECT_PLUGIN == "YG1.5" || CONNECT_PLUGIN == "YG1.4" || CONNECT_PLUGIN == "GP1.2.1" || CONNECT_PLUGIN == "GP1.1.0" || CONNECT_PLUGIN == "GP1.2.2" || CONNECT_PLUGIN == "GP1.2.3" || CONNECT_PLUGIN == "GP1.2.4"
           spinner.style.width = "16%"; spinner.style.height = "9%";
           #endif
           #if CHOOSE_LOADING_TYPE.includes("setLoading")
@@ -696,9 +754,16 @@
           }
           #endif
         } else {
+          // Настройка консоли помощника
+          console_helper.style.top = '13%';
+          console_helper.style.width = '45%';
+          console_helper.style.height = '20%';
+          console_helper.style.borderRadius = '3% 3% 3% 3% / 13%';
+          console_helper_text.style.padding = "2% 2% 2% 2%";
+
           isPortrait = false;
           lock(loading, 16/9);
-          #if CONNECT_PLUGIN == "YG1.6" || CONNECT_PLUGIN == "YG1.6.1" || CONNECT_PLUGIN == "YG1.5.2" || CONNECT_PLUGIN == "YG1.5.1" || CONNECT_PLUGIN == "YG1.5" || CONNECT_PLUGIN == "YG1.4" || CONNECT_PLUGIN == "GP1.2.1" || CONNECT_PLUGIN == "GP1.1.0" || CONNECT_PLUGIN == "GP1.2.2" || CONNECT_PLUGIN == "GP1.2.3"
+          #if CONNECT_PLUGIN == "YG1.6" || CONNECT_PLUGIN == "YG1.6.1" || CONNECT_PLUGIN == "YG1.5.2" || CONNECT_PLUGIN == "YG1.5.1" || CONNECT_PLUGIN == "YG1.5" || CONNECT_PLUGIN == "YG1.4" || CONNECT_PLUGIN == "GP1.2.1" || CONNECT_PLUGIN == "GP1.1.0" || CONNECT_PLUGIN == "GP1.2.2" || CONNECT_PLUGIN == "GP1.2.3" || CONNECT_PLUGIN == "GP1.2.4"
           spinner.style.width = "7.9%"; spinner.style.height = "14%";
           #endif
           #if CHOOSE_LOADING_TYPE.includes("setLoading")
@@ -731,7 +796,7 @@
       window.addEventListener("resize", (event) => {
         Update();
       });
-      #if CONNECT_PLUGIN == "GP1.2.1" || CONNECT_PLUGIN == "GP1.1.0" || CONNECT_PLUGIN == "GP1.2.2" || CONNECT_PLUGIN == "GP1.2.3"
+      #if CONNECT_PLUGIN == "GP1.2.1" || CONNECT_PLUGIN == "GP1.1.0" || CONNECT_PLUGIN == "GP1.2.2" || CONNECT_PLUGIN == "GP1.2.3" || CONNECT_PLUGIN == "GP1.2.4"
       const buildUrl = "Build";
       const loaderUrl = buildUrl + "/{{{ LOADER_FILENAME }}}";
       const config = {
@@ -748,6 +813,7 @@
         companyName: "{{{ COMPANY_NAME }}}",
         productName: "{{{ PRODUCT_NAME }}}",
         productVersion: "{{{ PRODUCT_VERSION }}}",
+        showBanner: unityShowBanner,
       };
 
       const unityLoader = document.createElement("script");
@@ -798,7 +864,7 @@
       });
       #endif
 
-      #if CONNECT_PLUGIN == "IGB1.9.2" || CONNECT_PLUGIN == "IGB1.10.1" || CONNECT_PLUGIN == "IGB1.11.0"
+      #if CONNECT_PLUGIN == "IGB1.9.2" || CONNECT_PLUGIN == "IGB1.10.1" || CONNECT_PLUGIN == "IGB1.11.0" || CONNECT_PLUGIN == "IGB1.12.0"
       const STORAGE_DATA_SEPARATOR = '{bridge_data_separator}'
       const STORAGE_KEYS_SEPARATOR = '{bridge_keys_separator}'
       const STORAGE_VALUES_SEPARATOR = '{bridge_values_separator}'
@@ -859,8 +925,15 @@
           #if IGB_GAME_DISTRIBUTION_GAME_ID && IGB_GAME_DISTRIBUTION_GAME_ID !== '-' && IGB_GAME_DISTRIBUTION_GAME_ID !== ' '
             'game_distribution': {
               gameId: '{{{ IGB_GAME_DISTRIBUTION_GAME_ID }}}'
-             }
+             },
           #endif
+#if CONNECT_PLUGIN == "IGB1.12.0"
+#if IGB_VK_PLAY_GAME_ID && IGB_VK_PLAY_GAME_ID !== '-' && IGB_VK_PLAY_GAME_ID !== ' '
+                    'vk_play': {
+                        gameId: '{{{ IGB_VK_PLAY_GAME_ID }}}'
+                    },
+#endif
+#endif
           }
       }
 
@@ -896,6 +969,7 @@
                                 companyName: '{{{ COMPANY_NAME }}}',
                                 productName: '{{{ PRODUCT_NAME }}}',
                                 productVersion: '{{{ PRODUCT_VERSION }}}',
+           	                showBanner: unityShowBanner,
                                 // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
                                 // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
                             },
@@ -1364,7 +1438,7 @@
                     })
             }
 
-            #if CONNECT_PLUGIN == "IGB1.10.1" || CONNECT_PLUGIN == "IGB1.11.0"
+            #if CONNECT_PLUGIN == "IGB1.10.1" || CONNECT_PLUGIN == "IGB1.11.0" || CONNECT_PLUGIN == "IGB1.12.0"
             window.getIsPaymentsSupported = function() {
                 return bridge.payments.isSupported.toString()
             }
@@ -1430,7 +1504,7 @@
                     })
             }
 
-            #if CONNECT_PLUGIN == "IGB1.11.0"
+            #if CONNECT_PLUGIN == "IGB1.11.0" || CONNECT_PLUGIN == "IGB1.12.0"
             window.getIsRemoteConfigSupported = function() {
                 return bridge.remoteConfig.isSupported.toString()
             }
@@ -1478,7 +1552,8 @@
         streamingAssetsUrl: "StreamingAssets",
         companyName: "{{{ COMPANY_NAME }}}",
         productName: "{{{ PRODUCT_NAME }}}",
-        productVersion: "{{{ PRODUCT_VERSION }}}"
+        productVersion: "{{{ PRODUCT_VERSION }}}",
+        showBanner: unityShowBanner,
       };
 
       // Возвращаем фокус, если кликнули по экрану
@@ -2582,6 +2657,7 @@
           companyName: {{{ JSON.stringify(COMPANY_NAME) }}},
           productName: {{{ JSON.stringify(PRODUCT_NAME) }}},
           productVersion: {{{ JSON.stringify(PRODUCT_VERSION) }}},
+	  showBanner: unityShowBanner,
         }, (progress) => {
           loading_bar_fill.style.width = 111.2 * progress + "%";
           Update();

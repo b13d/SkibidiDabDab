@@ -63,20 +63,28 @@ public class Implant : MonoBehaviour
 
     public void Buy()
     {
-        if (YandexGame.savesData.energy < price)
+        // if (YandexGame.savesData.energy < price)
+
+        if (GameManager.instance.GetMoney < price)
         {
             return;
         }
 
         _audio.Play();
 
-        YandexGame.savesData.achievements.buy += 1;
-        YandexGame.savesData.achievements.spend += price;
+        GameManager.instance.CountBuy += 1;
+        GameManager.instance.CountSpend += price;
+        
+        // YandexGame.savesData.achievements.buy += 1;
+        // YandexGame.savesData.achievements.spend += price;
         
         if (YandexGame.savesData.firstBuyThing[_indexThing] != 1)
         {
-            YandexGame.savesData.achievements.thingBuy += 1;
-            YandexGame.savesData.firstBuyThing[_indexThing] = 1;
+            GameManager.instance.CountThingBuy += 1;
+            GameManager.instance.ArrCountAchievementsCompleted[_indexThing] = 1;
+            
+            // YandexGame.savesData.achievements.thingBuy += 1;
+            // YandexGame.savesData.firstBuyThing[_indexThing] = 1;
         }
 
         if (_onlyOne)
@@ -84,12 +92,16 @@ public class Implant : MonoBehaviour
             GetComponent<Button>().interactable = false;
         }
 
-        YandexGame.savesData.energy -= price;
+        // YandexGame.savesData.energy -= price;
+        GameManager.instance.GetMoney -= price;
 
         if (isDoubling)
         {
-            YandexGame.savesData.energyInSecond *= 2;
-            YandexGame.savesData.energyInClick *= 2;
+            GameManager.instance.GetMoneyInClick *= 2;
+            GameManager.instance.GetMoneyInSecond *= 2;
+                        
+            // YandexGame.savesData.energyInSecond *= 2;
+            // YandexGame.savesData.energyInClick *= 2;
 
             price *= 4;
         }
@@ -97,16 +109,24 @@ public class Implant : MonoBehaviour
         {
             if (isSpeedAdd)
             {
-                YandexGame.savesData.energyInSecond += bonusAdd;
+                GameManager.instance.GetMoneyInSecond += bonusAdd;
+
+                // YandexGame.savesData.energyInSecond += bonusAdd;
             }
             else if (_clickAndInSecond)
             {
-                YandexGame.savesData.energyInSecond += bonusAdd;
-                YandexGame.savesData.energyInClick += bonusAdd;
+                GameManager.instance.GetMoneyInSecond += bonusAdd;
+                GameManager.instance.GetMoneyInClick += bonusAdd;
+
+                
+                // YandexGame.savesData.energyInSecond += bonusAdd;
+                // YandexGame.savesData.energyInClick += bonusAdd;
             }
             else
             {
-                YandexGame.savesData.energyInClick += bonusAdd;
+                GameManager.instance.GetMoneyInClick += bonusAdd;
+
+                // YandexGame.savesData.energyInClick += bonusAdd;
             }
 
             price += Mathf.FloorToInt((float)price / 100 * percentAdd);
@@ -114,9 +134,11 @@ public class Implant : MonoBehaviour
             percentAdd += 20;
         }
 
-
-        YandexGame.savesData.priceThings[_indexThing] = price; 
-        YandexGame.savesData.percentAddThings[_indexThing] = percentAdd; 
+        GameManager.instance.LocalPriceThings[_indexThing] = price;
+        GameManager.instance.LocalPercentAddThings[_indexThing] = percentAdd;
+        
+        // YandexGame.savesData.priceThings[_indexThing] = price; 
+        // YandexGame.savesData.percentAddThings[_indexThing] = percentAdd; 
         
         _txtPriceImplant.text = price.ToString() + " <sprite=\"Money\" name=\"Money\">";
         GameManager.instance.UpdateUI();

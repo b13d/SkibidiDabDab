@@ -68,22 +68,10 @@ public class Achievements : MonoBehaviour
 
     private void Update()
     {
-        // _second -= Time.deltaTime;
-        //
-        // if (_second < 0)
-        // {
-        //     _second = 2;
-        //     
-        //     YandexGame.NewLeaderboardScores("Records", 0);
-        //     Debug.Log("Сохранение рекорда");
-        // }
-
-        // gameObject.GetComponent<RectTransform>().anchoredPosition += (new Vector2(10, 0)  * Time.deltaTime);
-
         CheckAchievements();
 
-        
-        if (YandexGame.savesData.achievements.playTime < int.Parse(_achievements[3].TargetProgress.text))
+        if (GameManager.instance.CountPlayTime < int.Parse(_achievements[3].TargetProgress.text))
+        // if (YandexGame.savesData.achievements.playTime < int.Parse(_achievements[3].TargetProgress.text))
         {
             _timeToAchievement -= Time.deltaTime;
         
@@ -93,8 +81,9 @@ public class Achievements : MonoBehaviour
         
                 _achievements[3].SliderProgress.value += 1;
                 _achievements[3].CurrentProgress.text += 1;
-        
-                YandexGame.savesData.achievements.playTime += 1;
+
+                GameManager.instance.CountPlayTime += 1;
+                // YandexGame.savesData.achievements.playTime += 1;
         
                 // подсчет времени наигранного для достижения   
             }
@@ -108,55 +97,86 @@ public class Achievements : MonoBehaviour
         {
             if (i == 0 || i == 5 && !_achievements[i].Finalized)
             {
-                if (CheckValueTarget(YandexGame.savesData.achievements.click, i))
+                if (CheckValueTarget(GameManager.instance.CountClick, i))
+                // if (CheckValueTarget(YandexGame.savesData.achievements.click, i))
                 {
-                    _achievements[i].SliderProgress.value = YandexGame.savesData.achievements.click;
-                    _achievements[i].CurrentProgress.text = YandexGame.savesData.achievements.click.ToString();
+                    _achievements[i].SliderProgress.value = GameManager.instance.CountClick;
+                    _achievements[i].CurrentProgress.text = GameManager.instance.CountClick.ToString();
+                    
+                    // _achievements[i].SliderProgress.value = YandexGame.savesData.achievements.click;
+                    // _achievements[i].CurrentProgress.text = YandexGame.savesData.achievements.click.ToString();
                 }
             }
 
             if (i == 1 || i == 6 && !_achievements[i].Finalized)
             {
-                if (CheckValueTarget(YandexGame.savesData.achievements.buy, i))
+                if (CheckValueTarget(GameManager.instance.CountBuy, i))
+                // if (CheckValueTarget(YandexGame.savesData.achievements.buy, i))
                 {
-                    _achievements[i].SliderProgress.value = YandexGame.savesData.achievements.buy;
-                    _achievements[i].CurrentProgress.text = YandexGame.savesData.achievements.buy.ToString();
+                    _achievements[i].SliderProgress.value = GameManager.instance.CountBuy;
+                    _achievements[i].CurrentProgress.text = GameManager.instance.CountBuy.ToString();
+                    
+                    // _achievements[i].SliderProgress.value = YandexGame.savesData.achievements.buy;
+                    // _achievements[i].CurrentProgress.text = YandexGame.savesData.achievements.buy.ToString();
                 }
             }
 
             if (i == 2 || i == 4 && !_achievements[i].Finalized)
             {
-                if (CheckValueTarget(YandexGame.savesData.achievements.spend, i))
+                // if (CheckValueTarget(YandexGame.savesData.achievements.spend, i))
+
+                if (CheckValueTarget(GameManager.instance.CountSpend, i))
                 {
-                    _achievements[i].SliderProgress.value = YandexGame.savesData.achievements.spend;
-                    _achievements[i].CurrentProgress.text = YandexGame.savesData.achievements.spend.ToString();
+                    _achievements[i].SliderProgress.value = GameManager.instance.CountSpend;
+                    _achievements[i].CurrentProgress.text = GameManager.instance.CountSpend.ToString();
+                    
+                    // _achievements[i].SliderProgress.value = YandexGame.savesData.achievements.spend;
+                    // _achievements[i].CurrentProgress.text = YandexGame.savesData.achievements.spend.ToString();
                 }
             }
 
             if (i == 7 || i == 8 && !_achievements[i].Finalized)
             {
-                if (CheckValueTarget(YandexGame.savesData.energy, i) && !_achievements[i].Finalized)
+                // if (CheckValueTarget(YandexGame.savesData.energy, i) && !_achievements[i].Finalized)
+
+                
+                if (CheckValueTarget(GameManager.instance.GetMoney, i) && !_achievements[i].Finalized)
                 {
-                    _achievements[i].SliderProgress.value = YandexGame.savesData.energy;
-                    _achievements[i].CurrentProgress.text = YandexGame.savesData.energy.ToString();
+                    _achievements[i].SliderProgress.value = GameManager.instance.GetMoney;
+                    _achievements[i].CurrentProgress.text = GameManager.instance.GetMoney.ToString();
+                    
+                    // _achievements[i].SliderProgress.value = YandexGame.savesData.energy;
+                    // _achievements[i].CurrentProgress.text = YandexGame.savesData.energy.ToString();
                 }
             }
 
             if (i == 3 && !_achievements[i].Finalized)
             {
-                if (CheckValueTarget(YandexGame.savesData.achievements.playTime, i))
+                // if (CheckValueTarget(YandexGame.savesData.achievements.playTime, i))
+
+                
+                if (CheckValueTarget(GameManager.instance.CountPlayTime, i))
                 {
-                    _achievements[i].SliderProgress.value = YandexGame.savesData.achievements.playTime;
-                    _achievements[i].CurrentProgress.text = YandexGame.savesData.achievements.playTime.ToString();
+                    _achievements[i].SliderProgress.value = GameManager.instance.CountPlayTime;
+                    _achievements[i].CurrentProgress.text = GameManager.instance.CountPlayTime.ToString();
+                    
+                    // _achievements[i].SliderProgress.value = YandexGame.savesData.achievements.playTime;
+                    // _achievements[i].CurrentProgress.text = YandexGame.savesData.achievements.playTime.ToString();
                 }
             }
 
             if (i == _achievements.Count - 1 && !_achievements[i].Finalized)
             {
-                if (CheckValueTarget(YandexGame.savesData.achievements.thingBuy, i))
+                // if (CheckValueTarget(YandexGame.savesData.achievements.thingBuy, i))
+
+                
+                if (CheckValueTarget(GameManager.instance.CountThingBuy, i))
                 {
-                    _achievements[i].SliderProgress.value = YandexGame.savesData.achievements.thingBuy;
-                    _achievements[i].CurrentProgress.text = YandexGame.savesData.achievements.thingBuy.ToString();
+                    _achievements[i].SliderProgress.value = GameManager.instance.CountThingBuy;
+                    _achievements[i].CurrentProgress.text = GameManager.instance.CountThingBuy.ToString();
+                    
+                    // _achievements[i].SliderProgress.value = YandexGame.savesData.achievements.thingBuy;
+                    // _achievements[i].CurrentProgress.text = YandexGame.savesData.achievements.thingBuy.ToString();
                 }
             }
         }
@@ -178,7 +198,8 @@ public class Achievements : MonoBehaviour
                 newBackGround.color = Color.grey;
                 _achievements[index].BackGround = newBackGround;
 
-                YandexGame.savesData.achievements.achievementsCompleted[index] = 1;
+                GameManager.instance.ArrCountAchievementsCompleted[index] = 1;
+                // YandexGame.savesData.achievements.achievementsCompleted[index] = 1;
 
                 _notification.CreateNewNotification(_achievements[index].ImageAchievement,
                     _achievements[index].TextNameAchievement.text, _achievements[index].CurrentProgress.text);
