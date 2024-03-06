@@ -35,7 +35,6 @@ public class Implant : MonoBehaviour
 
     private AudioSource _audio;
 
-
     void Start()
     {
         _audio = GetComponent<AudioSource>();

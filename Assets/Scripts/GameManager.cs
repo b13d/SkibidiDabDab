@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using YG;
@@ -20,6 +21,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _txtInClick;
 
+    [SerializeField] private SaveOut _save;
+    
     private bool _doubleBonus;
 
     private int localMoney = 0;
@@ -140,14 +143,63 @@ public class GameManager : MonoBehaviour
             //     YandexGame.savesData.energyInSecond = 1;
             //     YandexGame.savesData.energyInClick = 1;
             // }
+
+            if (YandexGame.savesData.energyInClick == 0 || YandexGame.savesData.energyInSecond == 0)
+            {
+                _txtScore.text = "0" + " <sprite=\"Money\" name=\"Money\">";
+                _txtInSecond.text = "1" + "  <sprite=\"Money\" name=\"Money\">В секунду";
+                _txtInClick.text = "1" + "  <sprite=\"Money\" name=\"Money\"> за клик";
+            }
+            else
+            {
+                _txtScore.text = YandexGame.savesData.energy + " <sprite=\"Money\" name=\"Money\">";
+                _txtInSecond.text = YandexGame.savesData.energyInSecond + "  <sprite=\"Money\" name=\"Money\">В секунду";
+                _txtInClick.text = YandexGame.savesData.energyInClick + "  <sprite=\"Money\" name=\"Money\"> за клик";
+            }
             
-            
-            _txtScore.text = YandexGame.savesData.energy + " <sprite=\"Money\" name=\"Money\">";
-            _txtInSecond.text = YandexGame.savesData.energyInSecond + "  <sprite=\"Money\" name=\"Money\">В секунду";
-            _txtInClick.text = YandexGame.savesData.energyInClick + "  <sprite=\"Money\" name=\"Money\"> за клик";
+
 
             instance = this;
 
+            
+            DontDestroyOnLoad(gameObject);
+
+            StartCoroutine(InitialValue());
+            StartCoroutine(SaveRecord());
+
+            // TestFunc();
+        }
+    }
+
+    // private async void TestFunc()
+    // {
+    //     await Task.Yield();
+    //     
+    //     Debug.Log("Прошла секунда");
+    //     
+    //     TestFunc();
+    // } 
+
+    IEnumerator SaveData()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+        
+            _save.Save();
+        }
+    }
+    
+    IEnumerator InitialValue()
+    {
+        yield return new WaitForSeconds(1);
+
+        if (YandexGame.savesData.energyInSecond == 0 || YandexGame.savesData.energyInClick == 0)
+        {
+           StartCoroutine(InitialValue());
+        }
+        else
+        {
             localMoney = YandexGame.savesData.energy;
             localMoneyInSecond = YandexGame.savesData.energyInSecond;
             localMoneyInClick = YandexGame.savesData.energyInClick;
@@ -164,12 +216,14 @@ public class GameManager : MonoBehaviour
             localFirstBuyThing = YandexGame.savesData.firstBuyThing;
             localPercentAddThings = YandexGame.savesData.percentAddThings;
             
-            DontDestroyOnLoad(gameObject);
+            _txtScore.text = YandexGame.savesData.energy + " <sprite=\"Money\" name=\"Money\">";
+            _txtInSecond.text = YandexGame.savesData.energyInSecond + "  <sprite=\"Money\" name=\"Money\">В секунду";
+            _txtInClick.text = YandexGame.savesData.energyInClick + "  <sprite=\"Money\" name=\"Money\"> за клик";
             
-            StartCoroutine(SaveRecord());
+            StartCoroutine(SaveData());
         }
     }
-
+    
     IEnumerator SaveRecord()
     {
         while (true)

@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
+  m_Color: {r: 0.09843359, g: 0.15779501, b: 0.26415092, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -369,6 +369,9 @@ MonoBehaviour:
   _onlyOne: 0
   _indexThing: 0
   _clickAndInSecond: 0
+  isGreen: 0
+  isRed: 0
+  isGold: 0
 --- !u!61 &7476215409030236341
 BoxCollider2D:
   m_ObjectHideFlags: 0
