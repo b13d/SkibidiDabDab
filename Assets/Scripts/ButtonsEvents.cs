@@ -48,8 +48,10 @@ public class ButtonsEvents : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _txtRewardButton;
     [SerializeField] private Button _rewardButton;
     [SerializeField] private GameObject _panel;
+    [SerializeField] private GameObject _canvasButtonContinue;
+    [SerializeField] private AudioSource _audioMusic;
 
-    private int timerToUnblockReward = 0;
+    private int timerToUnblockReward = 300;
 
     public int GetTimerToUnblockReward
     {
@@ -193,14 +195,16 @@ public class ButtonsEvents : MonoBehaviour
 
     public void DisabledButtonReward()
     {
-        if (GameManager.instance._isPause)
-        {
-            return;
-        }
-        
+        // if (GameManager.instance._isPause)
+        // {
+        //     return;
+        // }
+
+        _audioMusic.mute = true;
         _panel.SetActive(true);
         _rewardButton.interactable = false;
         YandexGame.savesData.wasShowReward = true;
+        _canvasButtonContinue.SetActive(true);
     }
 
     private void Update()

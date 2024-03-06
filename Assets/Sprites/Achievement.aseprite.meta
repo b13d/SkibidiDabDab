@@ -138,7 +138,127 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 4}
+    uvTransform: {x: 4, y: -21}
+  - name: Achievement_Frame_1
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 87
+      width: 60
+      height: 75
+    spriteID: 3bc16d5c5d7a11649ac1c66b0c978bbe
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 62}
+  - name: Achievement_Frame_2
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 170
+      width: 60
+      height: 75
+    spriteID: d11867c46116f7a4d90f1ba6423a9dd0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 145}
+  - name: Achievement_Frame_3
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 72
+      y: 4
+      width: 60
+      height: 75
+    spriteID: 95866e88046c8db418a7e61e135b8a22
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 72, y: -21}
+  - name: Achievement_Frame_4
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 72
+      y: 87
+      width: 60
+      height: 75
+    spriteID: 7a0027fb6604fd14cbc3c9ed5bc46f08
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 72, y: 62}
+  - name: Achievement_Frame_5
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 72
+      y: 170
+      width: 60
+      height: 75
+    spriteID: 5f37c686cf12cb747b1d411d2d6a3f6f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 72, y: 145}
+  - name: Achievement_Frame_6
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 140
+      y: 4
+      width: 60
+      height: 75
+    spriteID: faf086eaac1ce7148a81bc18b6b9e850
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 140, y: -21}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -148,14 +268,62 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: Achievement
+    - name: Achievement_Frame_0
       frameIndex: 0
       cellRect:
         x: 0
-        y: 0
-        width: 60
-        height: 75
+        y: -25
+        width: 200
+        height: 100
       spriteId: fe5f03aa58352d341802e38ecafaebe9
+    - name: Achievement_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 0
+        y: -25
+        width: 200
+        height: 100
+      spriteId: 3bc16d5c5d7a11649ac1c66b0c978bbe
+    - name: Achievement_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 0
+        y: -25
+        width: 200
+        height: 100
+      spriteId: d11867c46116f7a4d90f1ba6423a9dd0
+    - name: Achievement_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 0
+        y: -25
+        width: 200
+        height: 100
+      spriteId: 95866e88046c8db418a7e61e135b8a22
+    - name: Achievement_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 0
+        y: -25
+        width: 200
+        height: 100
+      spriteId: 7a0027fb6604fd14cbc3c9ed5bc46f08
+    - name: Achievement_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 0
+        y: -25
+        width: 200
+        height: 100
+      spriteId: 5f37c686cf12cb747b1d411d2d6a3f6f
+    - name: Achievement_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 0
+        y: -25
+        width: 200
+        height: 100
+      spriteId: faf086eaac1ce7148a81bc18b6b9e850
     linkedCells: []
     parentIndex: -1
   platformSettings: []

@@ -132,8 +132,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            YandexGame.ResetSaveProgress();
-            YandexGame.SaveProgress();
+            // YandexGame.ResetSaveProgress();
+            // YandexGame.SaveProgress();
             
             // if (YandexGame.savesData.energyInSecond == 0 || YandexGame.savesData.energyInClick == 0)
             // {

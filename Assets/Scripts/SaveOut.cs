@@ -28,8 +28,11 @@ public class SaveOut : MonoBehaviour
         YandexGame.savesData.percentAddThings = GameManager.instance.LocalPercentAddThings;
         YandexGame.savesData.priceThings = GameManager.instance.LocalPriceThings;
         
+        Debug.Log("GameManager.instance.GetMoney: " + GameManager.instance.GetMoney);
+        
         YandexGame.SaveProgress();
         
         Debug.Log("Сохранение рекорда в SaveOut");
     }
+
 }

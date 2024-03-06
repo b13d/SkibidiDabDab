@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -26,11 +27,13 @@ public class TimerBeforeAdsYG : MonoBehaviour
 
     [SerializeField] private Button continueButton;
     [SerializeField] private AudioSource _audioMusic;
-
+    [SerializeField] private GameObject _panelContinue;
+    
 
     private void Start()
     {
         continueButton.onClick.AddListener(ContinueGame);
+        _panelContinue.SetActive(false);
 
         if (secondsPanelObject)
             secondsPanelObject.SetActive(false);
@@ -44,12 +47,18 @@ public class TimerBeforeAdsYG : MonoBehaviour
             Debug.LogError("Fill in the array 'secondObjects'");
     }
 
+    // private void Update()
+    // {
+    //     // Debug.LogError("Time.timeScale: " + Time.timeScale);
+    // }
+
     void ContinueGame()
     {
         Time.timeScale = 1;
         continueButton.gameObject.SetActive(false);
         _audioMusic.mute = false;
         GameManager.instance._isPause = false;
+        _panelContinue.SetActive(false);
     }
 
     IEnumerator CheckTimerAd()
@@ -85,6 +94,8 @@ public class TimerBeforeAdsYG : MonoBehaviour
 
     IEnumerator TimerAdShow()
     {
+        Time.timeScale = 0;
+        
         bool process = true;
         while (process)
         {
@@ -104,26 +115,24 @@ public class TimerBeforeAdsYG : MonoBehaviour
 
             if (objSecCounter == secondObjects.Length)
             {
+                while (YandexGame.nowVideoAd)
+                {
+                    yield return null;
+                }
+                
                 YandexGame.FullscreenShow();
 
-                continueButton.gameObject.SetActive(true);
                 StartCoroutine(BackupTimerClosure());
 
                 while (!YandexGame.nowFullAd)
                 {
-                    // if (_wasError)
-                    // {
-                    //     YandexGame.nowFullAd = true;
-                    //     _wasError = false;
-                    // }
-                    
                     yield return null;
                 }
 
-
-
                 Debug.LogError("Все скидываю");
-
+                
+                _panelContinue.SetActive(true);
+                continueButton.gameObject.SetActive(true);
                 secondsPanelObject.SetActive(false);
                 onHideTimer?.Invoke();
                 objSecCounter = 0;
